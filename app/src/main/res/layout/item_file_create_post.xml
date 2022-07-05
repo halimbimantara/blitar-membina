@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageIcon"
+            android:layout_width="@dimen/space_34dp"
+            android:layout_height="@dimen/space_34dp"
+            android:layout_marginStart="@dimen/space_8dp"
+            android:layout_marginTop="@dimen/space_8dp"
+            android:layout_marginBottom="@dimen/space_8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/ic_file_word_solid" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/editFileName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_8dp"
+            android:layout_marginTop="@dimen/space_8dp"
+            android:background="@drawable/bg_round_white"
+            android:hint="Set file name"
+            android:inputType="textCapWords|textMultiLine"
+            android:paddingStart="@dimen/space_10dp"
+            android:paddingTop="@dimen/space_8dp"
+            android:paddingEnd="@dimen/space_10dp"
+            android:paddingBottom="@dimen/space_8dp"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="@color/grey"
+            android:textSize="@dimen/space_14sp"
+            app:layout_constraintEnd_toStartOf="@id/imageClose"
+            app:layout_constraintStart_toEndOf="@id/imageIcon"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/space_6dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_close"
+            app:tint="@color/charcoal_grey" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textPreview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/space_6dp"
+            android:paddingBottom="@dimen/space_10dp"
+            android:text="Preview"
+            android:textColor="@color/azure"
+            android:textSize="@dimen/space_12sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/editFileName"
+            app:layout_constraintTop_toBottomOf="@id/editFileName" />
+
+        <View
+            android:id="@+id/viewDot"
+            android:layout_width="@dimen/space_4dp"
+            android:layout_height="@dimen/space_4dp"
+            android:layout_marginEnd="@dimen/space_6dp"
+            android:background="@drawable/dot_disabled"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/textPreview"
+            app:layout_constraintEnd_toStartOf="@id/textPreview"
+            app:layout_constraintTop_toTopOf="@id/textPreview" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textFileSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/space_6dp"
+            android:paddingTop="@dimen/space_6dp"
+            android:paddingBottom="@dimen/space_10dp"
+            android:text="3 Mb"
+            android:textColor="@color/charcoal_grey"
+            android:textSize="@dimen/space_12sp"
+            app:layout_constraintBottom_toBottomOf="@id/textPreview"
+            app:layout_constraintEnd_toStartOf="@id/viewDot"
+            app:layout_constraintTop_toTopOf="@id/textPreview" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
