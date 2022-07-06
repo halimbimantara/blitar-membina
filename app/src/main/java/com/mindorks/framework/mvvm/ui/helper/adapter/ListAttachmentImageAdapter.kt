@@ -121,6 +121,7 @@ class ListAttachmentImageAdapter(var mContext: Context) : RecyclerView.Adapter<B
         var data: AttachFileModel? = null
         override fun onBind(position: Int) {
             val blog = items!![position]
+            setPost(blog)
             mBinding.itemMediaCloseButtonImage.setOnClickListener { view: View? ->
                 mListener!!.onDeleteItemImage(
                     position
@@ -129,7 +130,7 @@ class ListAttachmentImageAdapter(var mContext: Context) : RecyclerView.Adapter<B
             mBinding.executePendingBindings()
         }
 
-        fun setPost(post: AttachFileModel) {
+        private fun setPost(post: AttachFileModel) {
             val extension: String?
             if (post.type != null) {
                 extension = post.type

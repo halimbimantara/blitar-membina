@@ -7,10 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.kbeanie.multipicker.api.CacheLocation
-import com.kbeanie.multipicker.api.CameraImagePicker
-import com.kbeanie.multipicker.api.FilePicker
-import com.kbeanie.multipicker.api.ImagePicker
+import com.kbeanie.multipicker.api.*
 import com.kbeanie.multipicker.api.callbacks.FilePickerCallback
 import com.kbeanie.multipicker.api.callbacks.ImagePickerCallback
 import com.kbeanie.multipicker.api.entity.ChosenFile
@@ -28,11 +25,13 @@ import com.mindorks.framework.mvvm.ui.helper.adapter.ListAttachmentImageAdapter
 import com.mindorks.framework.mvvm.utils.widget.ChooseFileDialog
 import com.nabinbhandari.android.permissions.PermissionHandler
 import com.nabinbhandari.android.permissions.Permissions
+import java.io.File
 import java.util.ArrayList
 import java.util.HashMap
 
 class FormPostLokerActivity : BaseActivity<ActivityFormLowonganBinding?, FormPostViewModel?>(),
-    ChooseFileDialog.DialogItemListener,ListAttachmentImageAdapter.ImageAttachListListener,ListAttachmentFileAdapter.FileAttachmentListener {
+    ChooseFileDialog.DialogItemListener, ListAttachmentImageAdapter.ImageAttachListListener,
+    ListAttachmentFileAdapter.FileAttachmentListener, ImagePickerCallback, FilePickerCallback{
     private var isGranted: Boolean = false
     lateinit var binding: ActivityFormLowonganBinding
 
@@ -115,7 +114,7 @@ class FormPostLokerActivity : BaseActivity<ActivityFormLowonganBinding?, FormPos
     /**
      * File picker image,file,gallery
      */
-    fun takePicture() {
+    private fun takePicture() {
         Permissions.check(this, permissions, null, null, object : PermissionHandler() {
             override fun onGranted() {
                 cameraPicker = CameraImagePicker(this@FormPostLokerActivity)
@@ -123,7 +122,7 @@ class FormPostLokerActivity : BaseActivity<ActivityFormLowonganBinding?, FormPos
                 cameraPicker!!.setCacheLocation(CacheLocation.EXTERNAL_STORAGE_APP_DIR)
                 cameraPicker!!.setImagePickerCallback(object : ImagePickerCallback {
                     override fun onError(p0: String?) {
-                     showMessage(getString(R.string.info_alert_file_cannot_read)+"\n $p0")
+                        showMessage(getString(R.string.info_alert_file_cannot_read) + "\n $p0")
                     }
 
                     override fun onImagesChosen(list: MutableList<ChosenImage>?) {
@@ -189,7 +188,11 @@ class FormPostLokerActivity : BaseActivity<ActivityFormLowonganBinding?, FormPos
                         }
                         binding.rvListFile.visibility = View.VISIBLE
                         binding.rvListFile.layoutManager =
-                            LinearLayoutManager(this@FormPostLokerActivity, LinearLayoutManager.HORIZONTAL, false)
+                            LinearLayoutManager(
+                                this@FormPostLokerActivity,
+                                LinearLayoutManager.HORIZONTAL,
+                                false
+                            )
                         binding.rvListFile.adapter = fileAttachAdapter
                         fileAttachAdapter!!.setPosts(modelListFile)
                     }
@@ -208,7 +211,7 @@ class FormPostLokerActivity : BaseActivity<ActivityFormLowonganBinding?, FormPos
                 imagePicker = ImagePicker(this@FormPostLokerActivity)
                 imagePicker!!.setImagePickerCallback(object : ImagePickerCallback {
                     override fun onError(errInfo: String?) {
-                        showMessage(getString(R.string.info_alert_file_cannot_read)+"\n $errInfo")
+                        showMessage(getString(R.string.info_alert_file_cannot_read) + "\n $errInfo")
                     }
 
                     override fun onImagesChosen(list: MutableList<ChosenImage>?) {
@@ -293,4 +296,90 @@ class FormPostLokerActivity : BaseActivity<ActivityFormLowonganBinding?, FormPos
     override fun onDeleteItemFile(pos: Int) {
 
     }
+
+
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK) {
+            when (requestCode) {
+                Picker.PICK_IMAGE_DEVICE -> {
+                    if (imagePicker == null) {
+                        imagePicker = ImagePicker(this)
+                        imagePicker!!.setImagePickerCallback(this)
+                    }
+                    imagePicker!!.submit(data)
+                }
+                Picker.PICK_FILE -> {
+                    if (filePicker == null) {
+                        filePicker = FilePicker(this)
+                        filePicker!!.setFilePickerCallback(this)
+                    }
+                    filePicker!!.submit(data)
+                }
+                Picker.PICK_IMAGE_CAMERA -> {
+                    if (cameraPicker == null) {
+                        cameraPicker = CameraImagePicker(this)
+                        cameraPicker!!.setImagePickerCallback(this)
+                        cameraPicker!!.reinitialize(pickerPath)
+                    }
+                    cameraPicker!!.submit(data)
+                }
+            }
+        } else {
+            showMessage("You haven't picked File")
+        }
+    }
+
+    override fun onError(p0: String?) {
+
+    }
+
+    override fun onFilesChosen(list: MutableList<ChosenFile>?) {
+        for (b in list!!.indices) {
+            if (list[b].size >= AppUtils.FILE_MAX_SIZE_UPLOAD) {
+                Toast.makeText(
+                    this,
+                    getString(R.string.info_alert_file_max),
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                // Currently can't compress File (Tryout)
+                val model = AttachFileModel()
+                model.fileName = list[b].displayName
+                model.originalPath = list[b].originalPath
+                urlList.add(model)
+                modelListFile.add(model)
+            }
+        }
+        binding.rvListFile.visibility = View.VISIBLE
+        binding.rvListFile.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvListFile.adapter = fileAttachAdapter
+        fileAttachAdapter!!.setPosts(modelListFile)
+    }
+
+    override fun onImagesChosen(list: MutableList<ChosenImage>?) {
+        for (b in list!!.indices) {
+            if (list[b].size >= AppUtils.FILE_MAX_SIZE_UPLOAD) {
+                Toast.makeText(
+                    this,
+                    getString(R.string.info_alert_file_max),
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+//                viewModel!!.compressImage(this, list[b].originalPath)
+                val model = AttachFileModel()
+                model.fileName = list[b].displayName
+                model.originalPath = list[b].originalPath
+                model.previewThumbnail = list[b].thumbnailPath
+                modelListImage.add(model)
+            }
+        }
+        binding.rvListImage.visibility = View.VISIBLE
+        binding.rvListImage.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvListImage.adapter = adapterImageAttach
+        adapterImageAttach!!.setPosts(modelListImage)
+    }
+
 }
