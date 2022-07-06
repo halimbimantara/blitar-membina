@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/dialog_w"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/bg_dialog_choose_file"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/camera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:padding="16dp"
+        android:text="@string/camera"
+        android:textColor="@color/grey_600"
+        android:textSize="@dimen/ts_default" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginStart="@dimen/space_10dp"
+        android:layout_marginEnd="@dimen/space_10dp"
+        android:background="@color/grey_300" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/gallery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:visibility="gone"
+        android:padding="@dimen/content_margin"
+        android:text="@string/title_gallery"
+        android:textColor="@color/grey_500"
+        android:textSize="@dimen/ts_default" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginStart="@dimen/space_10dp"
+        android:layout_marginEnd="@dimen/space_10dp"
+        android:background="@color/grey_300" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/uploadFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:padding="@dimen/content_margin"
+        android:text="Files"
+        android:textColor="@color/grey_600"
+        android:textSize="@dimen/ts_default" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginStart="@dimen/space_10dp"
+        android:layout_marginEnd="@dimen/space_10dp"
+        android:background="@color/grey_300" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:padding="@dimen/content_margin"
+        android:text="@string/delete"
+        android:textColor="@color/grey_800"
+        android:textSize="@dimen/ts_default" />
+
+</LinearLayout>

@@ -131,6 +131,11 @@
     <string name="label_upload_foto_cover">Upload Foto Cover</string>
     <string name="empty_content">Data Kosong</string>
     <string name="tap_to_retry">Coba Kembali</string>
+    <string name="info_alert_file_max">"Maximum File "</string>
+    <string name="camera">Camera</string>
+    <string name="title_gallery">Gallery</string>
+    <string name="alert_acces_granted">Permission granted</string>
+    <string name="info_alert_file_cannot_read">Gagal Memilih File</string>
     <string-array name="spin_peserta">
         <item>Pilih peserta...</item>
         <item>Baries</item>

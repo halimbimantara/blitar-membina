@@ -292,6 +292,14 @@
                         app:layout_constraintTop_toBottomOf="@+id/cvBtnAddFile"
                         tools:visibility="visible" />
 
+                    <androidx.recyclerview.widget.RecyclerView
+                        app:layout_constraintTop_toBottomOf="@+id/rvListImage"
+                        android:id="@+id/rvListFile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:visibility="gone" />
+
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/BtnApply"
                         style="@style/GreenBtn"
@@ -304,7 +312,7 @@
                         android:textColor="@color/white"
                         app:layout_constraintEnd_toEndOf="@+id/rv_curicullum"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/rvListImage" />
+                        app:layout_constraintTop_toBottomOf="@+id/rvListFile" />
 
                     <Space
                         android:layout_width="match_parent"

@@ -22,6 +22,7 @@ import android.content.Intent
 import android.net.Uri
 import android.webkit.MimeTypeMap
 import com.mindorks.framework.mvvm.core.R
+import com.nabinbhandari.android.permissions.PermissionHandler
 import java.io.File
 
 /**
@@ -30,6 +31,34 @@ import java.io.File
 object AppUtils {
     // file size in bytes 25mb
     const val FILE_MAX_SIZE_UPLOAD = (25 * 1024 * 1024).toLong()
+
+    /**
+     * Require Permission
+     */
+    fun setPermissions(mContext: Context?, permissionList: Array<String>, info: String): Boolean {
+        val status = booleanArrayOf(false)
+        val rationale = "Please provide permission so that you can $info"
+        val options: com.nabinbhandari.android.permissions.Permissions.Options =
+            com.nabinbhandari.android.permissions.Permissions.Options()
+                .setRationaleDialogTitle("Info")
+                .setSettingsDialogTitle("Warning")
+        com.nabinbhandari.android.permissions.Permissions.check(
+            mContext /*context*/,
+            permissionList,
+            rationale /*rationale*/,
+            options /*options*/,
+            object : PermissionHandler() {
+                override fun onGranted() {
+                    // do your task.
+                    status[0] = true
+                }
+
+                override fun onDenied(context: Context, deniedPermissions: ArrayList<String>) {
+                    status[0] = false
+                }
+            })
+        return status[0]
+    }
     fun openPlayStoreForApp(context: Context) {
         val appPackageName = context.packageName
         try {

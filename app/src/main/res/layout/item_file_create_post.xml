@@ -54,8 +54,8 @@
             android:padding="@dimen/space_6dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_close"
-            app:tint="@color/charcoal_grey" />
+            app:srcCompat="@drawable/ic_close_black_32dp"
+            app:tint="@color/grey_600" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textPreview"
@@ -90,7 +90,7 @@
             android:paddingTop="@dimen/space_6dp"
             android:paddingBottom="@dimen/space_10dp"
             android:text="3 Mb"
-            android:textColor="@color/charcoal_grey"
+            android:textColor="@color/grey_700"
             android:textSize="@dimen/space_12sp"
             app:layout_constraintBottom_toBottomOf="@id/textPreview"
             app:layout_constraintEnd_toStartOf="@id/viewDot"

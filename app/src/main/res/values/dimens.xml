@@ -100,6 +100,9 @@
     <dimen name="space_18sp">18sp</dimen> <!--sub_heading-->
     <dimen name="space_20sp">20sp</dimen> <!--sub_heading-->
     <dimen name="space_22sp">22sp</dimen>
-    <dimen name="space_25sp">25sp</dimen> <!--heading-->
+    <dimen name="space_25sp">25sp</dimen>
+    <dimen name="dialog_w">270dp</dimen> <!--heading-->
+
+    <dimen name="content_margin">16dp</dimen>
 
 </resources>

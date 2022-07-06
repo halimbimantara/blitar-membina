@@ -22,10 +22,18 @@ import com.mindorks.framework.mvvm.databinding.ActivityFormLowonganBinding
 import com.mindorks.framework.mvvm.di.component.ActivityComponent
 import com.mindorks.framework.mvvm.ui.base.BaseActivity
 import com.mindorks.framework.mvvm.ui.features.pembina.viewmodels.FormPostViewModel
+import com.mindorks.framework.mvvm.ui.helper.adapter.ListAttachmentFileAdapter
+import com.mindorks.framework.mvvm.ui.helper.adapter.ListAttachmentFileImageAdapter
+import com.mindorks.framework.mvvm.ui.helper.adapter.ListAttachmentImageAdapter
+import com.mindorks.framework.mvvm.utils.widget.ChooseFileDialog
 import com.nabinbhandari.android.permissions.PermissionHandler
 import com.nabinbhandari.android.permissions.Permissions
+import java.util.ArrayList
+import java.util.HashMap
 
-class FormPostLokerActivity : BaseActivity<ActivityFormLowonganBinding?, FormPostViewModel?>() {
+class FormPostLokerActivity : BaseActivity<ActivityFormLowonganBinding?, FormPostViewModel?>(),
+    ChooseFileDialog.DialogItemListener,ListAttachmentImageAdapter.ImageAttachListListener,ListAttachmentFileAdapter.FileAttachmentListener {
+    private var isGranted: Boolean = false
     lateinit var binding: ActivityFormLowonganBinding
 
     //file picker
@@ -33,7 +41,14 @@ class FormPostLokerActivity : BaseActivity<ActivityFormLowonganBinding?, FormPos
     private var imagePicker: ImagePicker? = null
     private var filePicker: FilePicker? = null
     private var pickerPath: String? = null
-
+    private var adapterImageAttach: ListAttachmentImageAdapter? = null
+    private var imageAttachAdapter: ListAttachmentFileImageAdapter? = null
+    private var fileAttachAdapter: ListAttachmentFileAdapter? = null
+    private val urlList: MutableList<AttachFileModel> = ArrayList()
+    private val modelListImage: MutableList<AttachFileModel> = ArrayList()
+    private val modelListFile: MutableList<AttachFileModel> = ArrayList()
+    private val uploaded: MutableList<HashMap<String, String>> = ArrayList()
+    var dialogFile: ChooseFileDialog? = null
     override val bindingVariable: Int
         get() = 0
 
@@ -48,7 +63,7 @@ class FormPostLokerActivity : BaseActivity<ActivityFormLowonganBinding?, FormPos
     }
 
     override fun performDependencyInjection(buildComponent: ActivityComponent) {
-        buildComponent!!.inject(this)
+        buildComponent.inject(this)
     }
 
     var permissions = arrayOf(
@@ -78,6 +93,23 @@ class FormPostLokerActivity : BaseActivity<ActivityFormLowonganBinding?, FormPos
         binding = ActivityFormLowonganBinding.inflate(layoutInflater)
         setContentView(binding.root)
         title = titleCourse
+        initUI()
+        actionUI()
+    }
+
+    private fun actionUI() {
+        binding.chooseFile.setOnClickListener {
+            dialogFile?.showDialog()
+        }
+    }
+
+    private fun initUI() {
+        adapterImageAttach = ListAttachmentImageAdapter(this)
+        adapterImageAttach!!.setListener(this)
+        fileAttachAdapter = ListAttachmentFileAdapter(this)
+        fileAttachAdapter!!.setListener(this)
+        dialogFile = ChooseFileDialog(this)
+        dialogFile!!.setListener(this)
     }
 
     /**
@@ -91,11 +123,35 @@ class FormPostLokerActivity : BaseActivity<ActivityFormLowonganBinding?, FormPos
                 cameraPicker!!.setCacheLocation(CacheLocation.EXTERNAL_STORAGE_APP_DIR)
                 cameraPicker!!.setImagePickerCallback(object : ImagePickerCallback {
                     override fun onError(p0: String?) {
-
+                     showMessage(getString(R.string.info_alert_file_cannot_read)+"\n $p0")
                     }
 
-                    override fun onImagesChosen(p0: MutableList<ChosenImage>?) {
-
+                    override fun onImagesChosen(list: MutableList<ChosenImage>?) {
+                        for (b in list!!.indices) {
+                            if (list[b].size >= AppUtils.FILE_MAX_SIZE_UPLOAD) {
+                                Toast.makeText(
+                                    this@FormPostLokerActivity,
+                                    getString(R.string.info_alert_file_max),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            } else {
+//                                viewModel!!.compressImage(this, list[b].originalPath)
+                                val model = AttachFileModel()
+                                model.fileName = list[b].displayName
+                                model.originalPath = list[b].originalPath
+                                model.previewThumbnail = list[b].thumbnailPath
+                                modelListImage.add(model)
+                            }
+                        }
+                        binding.rvListImage.visibility = View.VISIBLE
+                        binding.rvListImage.layoutManager =
+                            LinearLayoutManager(
+                                this@FormPostLokerActivity,
+                                LinearLayoutManager.HORIZONTAL,
+                                false
+                            )
+                        binding.rvListImage.adapter = adapterImageAttach
+                        adapterImageAttach!!.setPosts(modelListImage)
                     }
 
                 })
@@ -114,8 +170,28 @@ class FormPostLokerActivity : BaseActivity<ActivityFormLowonganBinding?, FormPos
                     override fun onError(p0: String?) {
                     }
 
-                    override fun onFilesChosen(p0: MutableList<ChosenFile>?) {
-
+                    override fun onFilesChosen(list: MutableList<ChosenFile>?) {
+                        for (b in list!!.indices) {
+                            if (list[b].size >= AppUtils.FILE_MAX_SIZE_UPLOAD) {
+                                Toast.makeText(
+                                    this@FormPostLokerActivity,
+                                    getString(R.string.info_alert_file_max),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            } else {
+                                // Currently can't compress File (Tryout)
+                                val model = AttachFileModel()
+                                model.fileName = list[b].displayName
+                                model.originalPath = list[b].originalPath
+                                urlList.add(model)
+                                modelListFile.add(model)
+                            }
+                        }
+                        binding.rvListFile.visibility = View.VISIBLE
+                        binding.rvListFile.layoutManager =
+                            LinearLayoutManager(this@FormPostLokerActivity, LinearLayoutManager.HORIZONTAL, false)
+                        binding.rvListFile.adapter = fileAttachAdapter
+                        fileAttachAdapter!!.setPosts(modelListFile)
                     }
 
                 })
@@ -131,25 +207,25 @@ class FormPostLokerActivity : BaseActivity<ActivityFormLowonganBinding?, FormPos
             override fun onGranted() {
                 imagePicker = ImagePicker(this@FormPostLokerActivity)
                 imagePicker!!.setImagePickerCallback(object : ImagePickerCallback {
-                    override fun onError(p0: String?) {
-
+                    override fun onError(errInfo: String?) {
+                        showMessage(getString(R.string.info_alert_file_cannot_read)+"\n $errInfo")
                     }
 
                     override fun onImagesChosen(list: MutableList<ChosenImage>?) {
                         for (b in list!!.indices) {
                             if (list[b].size >= AppUtils.FILE_MAX_SIZE_UPLOAD) {
-//                                Toast.makeText(
-//                                    this,
-//                                    getStringFromResources(R.string.info_alert_file_max),
-//                                    Toast.LENGTH_SHORT
-//                                ).show()
+                                Toast.makeText(
+                                    this@FormPostLokerActivity,
+                                    getString(R.string.info_alert_file_max),
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             } else {
 //                                viewModel!!.compressImage(this, list[b].originalPath)
-//                                val model = AttachFileModel()
-//                                model.fileName = list[b].displayName
-//                                model.originalPath = list[b].originalPath
-//                                model.previewThumbnail = list[b].thumbnailPath
-//                                modelListImage.add(model)
+                                val model = AttachFileModel()
+                                model.fileName = list[b].displayName
+                                model.originalPath = list[b].originalPath
+                                model.previewThumbnail = list[b].thumbnailPath
+                                modelListImage.add(model)
                             }
                         }
                         binding.rvListImage.visibility = View.VISIBLE
@@ -159,8 +235,8 @@ class FormPostLokerActivity : BaseActivity<ActivityFormLowonganBinding?, FormPos
                                 LinearLayoutManager.HORIZONTAL,
                                 false
                             )
-//                        binding.rvListImage.adapter = adapter
-//                        adapter!!.setPosts(modelListImage)
+                        binding.rvListImage.adapter = adapterImageAttach
+                        adapterImageAttach!!.setPosts(modelListImage)
                     }
 
                 })
@@ -172,6 +248,49 @@ class FormPostLokerActivity : BaseActivity<ActivityFormLowonganBinding?, FormPos
 
 
     override fun observeChange() {
+
+    }
+
+    /**
+     * Choose Dialog prompt
+     */
+    override fun onItemClick(view: View?) {
+        dialogFile!!.hideDialog()
+        if (configPermission()) {
+            when (view?.id) {
+                R.id.camera -> {
+                    takePicture()
+                }
+                R.id.gallery -> {
+                    imagePick()
+                }
+                R.id.uploadFile -> {
+                    filePick()
+                }
+            }
+        }
+    }
+
+    private fun configPermission(): Boolean {
+        val permissions = arrayOf(
+            Manifest.permission.CAMERA,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE
+        )
+        if (AppUtils.setPermissions(this, permissions, "-")) {
+            isGranted = true
+            showMessage(resources.getString(R.string.alert_acces_granted))
+        } else {
+            isGranted = false
+        }
+        return isGranted
+    }
+
+    override fun onDeleteItemImage(pos: Int) {
+
+    }
+
+    override fun onDeleteItemFile(pos: Int) {
 
     }
 }

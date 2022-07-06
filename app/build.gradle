@@ -133,8 +133,12 @@ dependencies {
     implementation 'com.github.yogacp:android-viewbinding:1.0.4'
     //permission
     implementation 'com.nabinbhandari.android:permissions:3.8'
+
     //picker
     implementation 'com.kbeanie:multipicker:1.6@aar'
+    //compressor
+    //img compress
+    implementation 'id.zelory:compressor:2.1.0'
 }
 repositories {
     mavenCentral()

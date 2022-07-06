@@ -24,7 +24,7 @@ class ListAttachmentFileAdapter(var mContext: Context) : RecyclerView.Adapter<Ba
 
     //    private List<GetListDetailTaskQuery.Performance_task> mBlogResponseList = Collections.emptyList();
     private val mBlogResponseList: MutableList<AttachFileModel>? = ArrayList()
-    private var mListener: AllTrendingListListener? = null
+    private var mListener: FileAttachmentListener? = null
     fun setPosts(dataList: List<AttachFileModel>) {
         for (model in dataList) {
             mBlogResponseList!!.add(model)
@@ -109,11 +109,11 @@ class ListAttachmentFileAdapter(var mContext: Context) : RecyclerView.Adapter<Ba
         notifyDataSetChanged()
     }
 
-    fun setListener(listener: AllTrendingListListener?) {
+    fun setListener(listener: FileAttachmentListener?) {
         mListener = listener
     }
 
-    interface AllTrendingListListener {
+    interface FileAttachmentListener {
         fun onDeleteItemFile(pos: Int)
     }
 

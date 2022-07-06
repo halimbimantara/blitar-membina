@@ -22,8 +22,6 @@ class ListAttachmentFileImageAdapter(var mContext: Context) :
     RecyclerView.Adapter<BaseViewHolder>() {
     var drop = true
     var allCheck = false
-
-    //    private List<GetListDetailTaskQuery.Performance_task> mBlogResponseList = Collections.emptyList();
     private val mBlogResponseList: MutableList<AttachFileModel>? = ArrayList()
     private var mListener: AllTrendingListListener? = null
     fun setPosts(dataList: List<AttachFileModel>?) {
@@ -39,11 +37,11 @@ class ListAttachmentFileImageAdapter(var mContext: Context) :
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (mBlogResponseList != null && !mBlogResponseList.isEmpty() && isNetworkConnected) {
+        return if (mBlogResponseList != null && mBlogResponseList.isNotEmpty() && isNetworkConnected) {
             VIEW_TYPE_NORMAL
         } else if (!isNetworkConnected || mBlogResponseList!!.isEmpty()) {
             VIEW_TYPE_EMPTY
-        } else if (mBlogResponseList != null && !mBlogResponseList.isEmpty() && !isNetworkConnected) {
+        } else if (mBlogResponseList.isNotEmpty() && !isNetworkConnected) {
             VIEW_TYPE_NORMAL
         } else {
             VIEW_TYPE_LOAD

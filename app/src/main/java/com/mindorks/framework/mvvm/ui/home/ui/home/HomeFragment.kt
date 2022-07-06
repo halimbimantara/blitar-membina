@@ -18,7 +18,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding?, HomeViewModel?>(),
     HomeListAdapter.HomeListAdapterListener {
     var binding: FragmentHomeBinding? = null
     var mAdapter: HomeListAdapter? = null
-    private val listCourseItem: ArrayList<ServiceResponse.Data?>? = arrayListOf()
+    private val listCourseItem: ArrayList<ServiceResponse.Data?> = arrayListOf()
 
     var mLayoutManager: LinearLayoutManager? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,7 +37,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding?, HomeViewModel?>(),
     private fun observer() {
         mViewModel!!.serviceDataList.observe(requireActivity()) {
             if (it != null) {
-                listCourseItem?.clear()
+                listCourseItem.clear()
                 it.data?.let { it1 -> listCourseItem?.addAll(it1) }
                 mAdapter?.addItems(listCourseItem)
             } else {
@@ -58,15 +58,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding?, HomeViewModel?>(),
     }
 
     private fun setup() {
-        val accessTipe = PreferenceUtils.userRole
-        when (accessTipe) {
-            PreferenceUtils.EXTRA_TYPE_ROLE_PELAMAR -> {
-                binding!!.floatAddLoker.gone()
-            }
+        binding!!.floatAddLoker.visible()
+        when (PreferenceUtils.userRole) {
 
-            PreferenceUtils.EXTRA_TYPE_ROLE_PEMBINA -> {
-                binding!!.floatAddLoker.visible()
-            }
+//            PreferenceUtils.EXTRA_TYPE_ROLE_PELAMAR -> {
+//                binding!!.floatAddLoker.gone()
+//            }
+//
+//            PreferenceUtils.EXTRA_TYPE_ROLE_PEMBINA -> {
+//                binding!!.floatAddLoker.visible()
+//            }
         }
         binding!!.floatAddLoker.setOnClickListener {
             startActivity(
