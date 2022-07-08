@@ -10,8 +10,8 @@ import com.mindorks.framework.mvvm.ui.features.pembina.viewmodels.FormPostViewMo
 import com.mindorks.framework.mvvm.ui.feed.FeedPagerAdapter
 import com.mindorks.framework.mvvm.ui.feed.FeedViewModel
 import com.mindorks.framework.mvvm.ui.home.ui.HomeMainViewModel
-import com.mindorks.framework.mvvm.ui.home.ui.home.HomeViewModel
-import com.mindorks.framework.mvvm.ui.login.LoginViewModel
+import com.mindorks.framework.mvvm.ui.account.login.LoginViewModel
+import com.mindorks.framework.mvvm.ui.account.login.register.RegisterViewModel
 import com.mindorks.framework.mvvm.ui.main.MainViewModel
 import com.mindorks.framework.mvvm.ui.splash.SplashViewModel
 import dagger.Module
@@ -101,5 +101,17 @@ class ActivityModule(private val activity: BaseActivity<*, *>?) {
             FormPostViewModel::class.java, supplier
         )
         return ViewModelProvider(activity!!, factory)[FormPostViewModel::class.java]
+    }
+
+    @Provides
+    fun provideRegisterViewModel(
+        dataManager: DataManager,
+        schedulerProvider: SchedulerProvider
+    ): RegisterViewModel {
+        val supplier = Supplier { RegisterViewModel(dataManager, schedulerProvider) }
+        val factory = ViewModelProviderFactory(
+            RegisterViewModel::class.java, supplier
+        )
+        return ViewModelProvider(activity!!, factory)[RegisterViewModel::class.java]
     }
 }

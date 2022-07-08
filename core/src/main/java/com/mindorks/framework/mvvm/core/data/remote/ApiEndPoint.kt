@@ -25,6 +25,8 @@ object ApiEndPoint {
     const val ENDPOINT_OPEN_SOURCE = BuildConfig.BASE_URL + "/5926c34212000035026871cd"
     const val ENDPOINT_SERVER_LOGIN = BuildConfig.BASE_URL + "/588d15f5100000a8072d2945"
     const val API_ENDPOINT_LOGIN_ACCOUNT = BuildConfig.BASE_URL + "/login"
+    const val API_ENDPOINT_REGISTER_ACCOUNT = BuildConfig.BASE_URL + "/register"
     const val API_ENDPOINT_SERVICE_LIST = BuildConfig.BASE_URL + "/service-list"
+    const val API_ENDPOINT_ADD_SERVICE= BuildConfig.BASE_URL + "/pembina-add-service"
     const val API_ENDPOINT_BOOKED_NOTIFY_LIST = BuildConfig.BASE_URL + "/booking-list"
 }

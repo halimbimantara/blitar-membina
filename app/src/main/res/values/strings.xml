@@ -104,7 +104,7 @@
     <string name="label_gambar_lain">Gambar lain - lain</string>
     <string name="label_ajukan">Ajukan</string>
     <string name="label_alamat">Alamat</string>
-    <string name="label_ttl">Tempat Tgl Lahir</string>
+    <string name="label_ttl">Tanggal Lahir</string>
     <string name="label_jenkel">Jenis Kelamin</string>
     <string name="label_sertifikat">Sertifikat</string>
     <string name="title_activity_student_report">StudentReportActivity</string>
@@ -119,6 +119,8 @@
     <string name="label_pembina">Pembina</string>
     <string name="batal">Batal</string>
     <string name="label_verified">Terverifikasi oleh admin dan pemerintah Desa</string>
+    <string name="label_nama_depan">Nama Depan</string>
+    <string name="label_nama_belakang">Nama Belakang</string>
     <string name="label_nama">Nama</string>
     <string name="label_nama_loker">Nama Lowongan / Magang</string>
     <string name="label_pddkn_last">Pendidikan Terakhir</string>
@@ -136,6 +138,9 @@
     <string name="title_gallery">Gallery</string>
     <string name="alert_acces_granted">Permission granted</string>
     <string name="info_alert_file_cannot_read">Gagal Memilih File</string>
+    <string name="info_field_canempty">Field tidak boleh kosong</string>
+    <string name="info_field_gender">Harap pilih jenis kelamin</string>
+    <string name="alert_success_register">"Berhasil Mendaftar "</string>
     <string-array name="spin_peserta">
         <item>Pilih peserta...</item>
         <item>Baries</item>

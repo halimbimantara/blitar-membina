@@ -21,9 +21,8 @@ android {
 
     buildTypes {
         debug {
-//            buildConfigField("String", "BASE_URL", "\"http://192.168.0.104:8000/api\"")
-            buildConfigField("String", "BASE_URL", "\"http://192.168.0.104/handyman-service/api\"")
-//            buildConfigField("String", "BASE_URL", "\"http://192.168.43.162/handyman-service/api\"")
+//            buildConfigField("String", "BASE_URL", "\"http://192.168.0.104/blitar-membina/api\"")
+            buildConfigField("String", "BASE_URL", "\"http://192.168.0.101/blitar-membina/api\"")
             buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
         }
         release {

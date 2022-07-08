@@ -14,7 +14,7 @@
  *  limitations under the License
  */
 
-package com.mindorks.framework.mvvm.ui.login;
+package com.mindorks.framework.mvvm.ui.account.login;
 
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;

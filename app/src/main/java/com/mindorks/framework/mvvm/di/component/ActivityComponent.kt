@@ -8,7 +8,8 @@ import com.mindorks.framework.mvvm.di.scope.ActivityScope
 import com.mindorks.framework.mvvm.ui.features.pembina.activity.FormPostLokerActivity
 import com.mindorks.framework.mvvm.ui.feed.FeedActivity
 import com.mindorks.framework.mvvm.ui.home.HomeActivityMain
-import com.mindorks.framework.mvvm.ui.login.LoginActivity
+import com.mindorks.framework.mvvm.ui.account.login.LoginActivity
+import com.mindorks.framework.mvvm.ui.account.login.register.RegisterActivity
 import com.mindorks.framework.mvvm.ui.main.MainActivity
 import com.mindorks.framework.mvvm.ui.splash.SplashActivity
 import dagger.Component
@@ -27,6 +28,7 @@ interface ActivityComponent {
     val schedulerProvider: SchedulerProvider
     fun inject(activity: FeedActivity?)
     fun inject(activity: LoginActivity?)
+    fun inject(activity: RegisterActivity?)
     fun inject(activity: MainActivity?)
     fun inject(splashActivity: SplashActivity?)
     fun inject(mainHome: HomeActivityMain?)

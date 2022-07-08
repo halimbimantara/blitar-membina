@@ -1,272 +1,363 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="8dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-
-    <androidx.core.widget.NestedScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_margin="8dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/topContent"
+
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/imv_content"
-                android:layout_width="100dp"
-                android:layout_height="90dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="12dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/ico_profile_pembina"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textViewTitle"
-                style="@style/AppTextView.Bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:text="Foto Profil"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/imv_content"
-                app:layout_constraintTop_toTopOf="@+id/imv_content" />
-
-
-            <TextView
-                android:id="@+id/textViewSubTitle"
-                style="@style/AppTextView.Bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="Ganti Gambar"
-                android:textColor="@color/primary"
-                app:layout_constraintStart_toStartOf="@+id/textViewTitle"
-                app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
-
-            <TextView
-                android:id="@+id/textViewLocation"
-                style="@style/AppTextView.Regular"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:text="ig @usahajayablitar"
-                android:visibility="gone"
-                app:layout_constraintStart_toStartOf="@+id/textViewTitle"
-                app:layout_constraintTop_toBottomOf="@+id/textViewSubTitle" />
-
-
-            <TextView
-                android:id="@+id/textViewLabelPembina"
-                style="@style/AppTextView.Bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/label_nama"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imv_content" />
-
-            <EditText
-                android:id="@+id/EtNamaLengkap"
-                style="@style/AppTextView.Light"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="4dp"
-                android:background="@drawable/bg_rounded_border_black"
-                android:padding="3dp"
-                android:text="Suhardi"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewLabelPembina" />
-
-            <TextView
-                android:id="@+id/tvLabelTtl"
-                style="@style/AppTextView.Bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="9dp"
-                android:text="@string/label_ttl"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/EtNamaLengkap" />
-
-            <EditText
-                android:id="@+id/EtTtl"
-                style="@style/AppTextView.Light"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Blitar , 19-08-1998"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvLabelTtl" />
-
-            <!--Jadwal-->
-            <TextView
-                android:id="@+id/TvLabelJenkel"
-                style="@style/AppTextView.Bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="9dp"
-                android:text="@string/label_jenkel"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/EtTtl" />
-
-            <Spinner
-                android:id="@+id/EtJenkel"
-                style="@style/AppTextView.Light"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="4dp"
-                android:text="Laki - Laki"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TvLabelJenkel" />
-
-            <!--pertemuan-->
-            <TextView
-                android:id="@+id/TvLabelPekerjaan"
-                style="@style/AppTextView.Bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="9dp"
-                android:text="@string/label_pekerjaan"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/EtJenkel" />
-
-            <EditText
-                android:id="@+id/EtPekerjaan"
-                style="@style/AppTextView.Light"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Wiraswasta"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TvLabelPekerjaan" />
-
-            <TextView
-                android:id="@+id/tvLabelPendidikanTa"
-                style="@style/AppTextView.Bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="9dp"
-                android:text="@string/label_pddkn_last"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/EtPekerjaan" />
-
-            <EditText
-                android:id="@+id/EtPenddikanLast"
-                style="@style/AppTextView.Light"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="SMA"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvLabelPendidikanTa" />
-
-            <TextView
-                android:id="@+id/tvLabelAlamat"
-                style="@style/AppTextView.Bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="9dp"
-                android:text="@string/label_alamat"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/EtPenddikanLast" />
-
-            <EditText
-                android:id="@+id/EtAlamat"
-                style="@style/AppTextView.Light"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:minLines="3"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvLabelAlamat" />
-
-            <TextView
-                android:id="@+id/TvLabelUsername"
-                style="@style/AppTextView.Bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="9dp"
-                android:text="@string/labelUsername"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/EtAlamat" />
-
-            <EditText
-                android:id="@+id/EtUsername"
-                style="@style/AppTextView.Light"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="4dp"
-                android:background="@drawable/bg_rounded_border_black"
-                android:padding="5dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TvLabelUsername" />
-
-            <TextView
-                android:id="@+id/TvLabelPassword"
-                style="@style/AppTextView.Bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="9dp"
-                android:text="@string/labelPwd"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/EtUsername" />
-
-            <EditText
-                android:id="@+id/EtPassword"
-                style="@style/AppTextView.Light"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="4dp"
-                android:background="@drawable/bg_rounded_border_black"
-                android:inputType="textPassword"
-                android:padding="5dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TvLabelPassword" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/BtnApply"
-                style="@style/GreenBtn"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/topContent"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="20dp"
-                android:padding="10dp"
-                android:text="Register"
-                android:textColor="@color/white"
-                app:layout_constraintEnd_toEndOf="@+id/EtPassword"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/EtPassword" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imv_content"
+                    android:layout_width="100dp"
+                    android:layout_height="90dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="12dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_baseline_image_24"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewTitle"
+                    style="@style/AppTextView.Bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="Foto Profil"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@+id/imv_content"
+                    app:layout_constraintTop_toTopOf="@+id/imv_content" />
+
+
+                <TextView
+                    android:id="@+id/textViewSubTitle"
+                    style="@style/AppTextView.Bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Ganti Gambar"
+                    android:textColor="@color/primary"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="@+id/textViewTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
+
+                <TextView
+                    android:id="@+id/textViewLocation"
+                    style="@style/AppTextView.Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="ig @usahajayablitar"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="@+id/textViewTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewSubTitle" />
+
+
+                <TextView
+                    android:id="@+id/textViewLabelPembina"
+                    style="@style/AppTextView.Bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/label_nama_depan"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imv_content" />
+
+                <EditText
+                    android:id="@+id/EtNamaDepan"
+                    style="@style/AppTextView.Light"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/space_40dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bg_rounded_border_black"
+                    android:padding="3dp"
+                    android:paddingStart="@dimen/space_8dp"
+                    android:paddingEnd="@dimen/space_8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewLabelPembina"
+                    tools:text="Suhardi" />
+
+
+                <TextView
+                    android:id="@+id/textViewLabelNmBelakang"
+                    style="@style/AppTextView.Bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/label_nama_belakang"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/EtNamaDepan" />
+
+                <EditText
+                    android:id="@+id/EtNamaBelakang"
+                    style="@style/AppTextView.Light"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bg_rounded_border_black"
+                    android:padding="3dp"
+                    android:paddingStart="@dimen/space_8dp"
+                    android:paddingEnd="@dimen/space_8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewLabelNmBelakang"
+                    tools:text="Mamad" />
+
+                <TextView
+                    android:id="@+id/tvLabelTtl"
+                    style="@style/AppTextView.Bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    android:text="@string/label_ttl"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/EtNamaBelakang" />
+
+                <TextView
+                    android:id="@+id/EtTtl"
+                    style="@style/AppTextView.Light"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/space_40dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bg_rounded_border_black"
+                    android:drawableRight="@drawable/ic_baseline_calendar_month_24"
+                    android:gravity="center_vertical"
+                    android:hint="19-08-1998"
+                    android:paddingLeft="@dimen/space_8dp"
+                    android:paddingRight="@dimen/space_8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLabelTtl" />
+
+                <!--Jadwal-->
+                <TextView
+                    android:id="@+id/TvLabelJenkel"
+                    style="@style/AppTextView.Bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    android:text="@string/label_jenkel"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/EtTtl" />
+
+                <com.weiwangcn.betterspinner.library.BetterSpinner
+                    android:id="@+id/EtJenkel"
+                    style="@style/AppTextView.Light"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/space_40dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bg_rounded_border_black"
+                    android:paddingStart="@dimen/space_8dp"
+                    android:paddingEnd="@dimen/space_8dp"
+                    android:text="Laki - Laki"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TvLabelJenkel" />
+
+                <!--pertemuan-->
+                <TextView
+                    android:id="@+id/TvLabelPekerjaan"
+                    style="@style/AppTextView.Bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    android:text="@string/label_pekerjaan"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/EtJenkel" />
+
+                <EditText
+                    android:id="@+id/EtPekerjaan"
+                    style="@style/AppTextView.Regular"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/space_40dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bg_rounded_border_black"
+                    android:paddingLeft="@dimen/space_8dp"
+                    android:paddingRight="@dimen/space_8dp"
+                    android:text="Wiraswasta"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TvLabelPekerjaan" />
+
+                <TextView
+                    android:id="@+id/tvLabelPendidikanTa"
+                    style="@style/AppTextView.Bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    android:text="@string/label_pddkn_last"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/EtPekerjaan" />
+
+                <EditText
+                    android:id="@+id/EtPenddikanLast"
+                    style="@style/AppTextView.Light"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/space_40dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bg_rounded_border_black"
+                    android:paddingLeft="@dimen/space_8dp"
+                    android:paddingRight="@dimen/space_8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLabelPendidikanTa"
+                    tools:text="SMA" />
+
+                <TextView
+                    android:id="@+id/tvLabelAlamat"
+                    style="@style/AppTextView.Bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    android:text="@string/label_alamat"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/EtPenddikanLast" />
+
+                <EditText
+                    android:id="@+id/EtAlamat"
+                    style="@style/AppTextView.Light"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bg_rounded_border_black"
+                    android:minLines="3"
+                    android:paddingLeft="@dimen/space_8dp"
+                    android:paddingRight="@dimen/space_8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLabelAlamat" />
+
+
+                <!--                Email-->
+                <TextView
+                    android:id="@+id/TvLabelAlamat"
+                    style="@style/AppTextView.Bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    android:text="@string/email"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/EtAlamat" />
+
+                <EditText
+                    android:id="@+id/EtEmail"
+                    style="@style/AppTextView.Light"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bg_rounded_border_black"
+                    android:padding="5dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TvLabelAlamat" />
+
+                <TextView
+                    android:id="@+id/TvLabelUsername"
+                    style="@style/AppTextView.Bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    android:text="@string/labelUsername"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/EtEmail" />
+
+                <EditText
+                    android:id="@+id/EtUsername"
+                    style="@style/AppTextView.Light"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bg_rounded_border_black"
+                    android:padding="5dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TvLabelUsername" />
+
+                <TextView
+                    android:id="@+id/TvLabelPassword"
+                    style="@style/AppTextView.Bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    android:text="@string/labelPwd"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/EtUsername" />
+
+                <EditText
+                    android:id="@+id/EtPassword"
+                    style="@style/AppTextView.Light"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bg_rounded_border_black"
+                    android:inputType="textPassword"
+                    android:padding="5dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TvLabelPassword" />
+
+                <androidx.core.widget.ContentLoadingProgressBar
+                    android:id="@+id/CLoading"
+                    style="?android:attr/progressBarStyleLargeInverse"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:progressTint="@color/azure"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/EtPassword" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/BtnApply"
+                    style="@style/GreenBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="20dp"
+                    android:padding="10dp"
+                    android:text="Register"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="@+id/EtPassword"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/CLoading" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

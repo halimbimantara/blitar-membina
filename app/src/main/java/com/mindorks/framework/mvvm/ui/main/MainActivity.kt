@@ -38,7 +38,7 @@ import com.mindorks.framework.mvvm.di.component.ActivityComponent
 import com.mindorks.framework.mvvm.ui.about.AboutFragment
 import com.mindorks.framework.mvvm.ui.base.BaseActivity
 import com.mindorks.framework.mvvm.ui.feed.FeedActivity
-import com.mindorks.framework.mvvm.ui.login.LoginActivity
+import com.mindorks.framework.mvvm.ui.account.login.LoginActivity
 import com.mindorks.framework.mvvm.ui.main.rating.RateUsDialog
 import com.mindorks.framework.mvvm.utils.ScreenUtils
 import com.mindorks.placeholderview.SwipeDecor

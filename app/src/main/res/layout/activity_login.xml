@@ -17,7 +17,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.mindorks.framework.mvvm.ui.login.LoginActivity">
+    tools:context="com.mindorks.framework.mvvm.ui.account.login.LoginActivity">
 
     <data>
 
@@ -25,14 +25,14 @@
 
         <variable
             name="viewModel"
-            type="com.mindorks.framework.mvvm.ui.login.LoginViewModel" />
+            type="com.mindorks.framework.mvvm.ui.account.login.LoginViewModel" />
 
     </data>
 
     <FrameLayout
-        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <RelativeLayout
             android:id="@+id/activityMain"
@@ -129,6 +129,30 @@
                         android:padding="10dp"
                         android:text="@string/login"
                         android:textSize="18dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/AppTextView.Regular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/space_12dp"
+                            android:text="Anda belum mendaftar " />
+
+                        <TextView
+                            android:id="@+id/TvDaftar"
+                            style="@style/AppTextView.Bold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/space_12dp"
+                            android:gravity="right"
+                            android:text="Daftar Sekarang " />
+                    </LinearLayout>
+
+
                 </LinearLayout>
 
                 <LinearLayout

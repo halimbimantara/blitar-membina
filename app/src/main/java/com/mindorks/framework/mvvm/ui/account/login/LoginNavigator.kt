@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License
  */
-package com.mindorks.framework.mvvm.ui.login
+package com.mindorks.framework.mvvm.ui.account.login
 
 /**
  * Created by amitshekhar on 08/07/17.

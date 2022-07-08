@@ -22,10 +22,8 @@ import com.mindorks.framework.mvvm.R
 import com.mindorks.framework.mvvm.databinding.ActivitySplashBinding
 import com.mindorks.framework.mvvm.di.component.ActivityComponent
 import com.mindorks.framework.mvvm.ui.base.BaseActivity
-import com.mindorks.framework.mvvm.ui.feed.FeedActivity
-import com.mindorks.framework.mvvm.ui.feedbuilder.FeedActivityV2
 import com.mindorks.framework.mvvm.ui.home.HomeActivityMain
-import com.mindorks.framework.mvvm.ui.login.LoginActivity
+import com.mindorks.framework.mvvm.ui.account.login.LoginActivity
 
 /**
  * Created by amitshekhar on 08/07/17.

@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License
  */
-package com.mindorks.framework.mvvm.ui.login
+package com.mindorks.framework.mvvm.ui.account.login
 
 import android.content.Context
 import android.content.Intent
@@ -23,9 +23,9 @@ import com.mindorks.framework.mvvm.BR
 import com.mindorks.framework.mvvm.R
 import com.mindorks.framework.mvvm.databinding.ActivityLoginBinding
 import com.mindorks.framework.mvvm.di.component.ActivityComponent
+import com.mindorks.framework.mvvm.ui.account.login.register.RegisterActivity
 import com.mindorks.framework.mvvm.ui.base.BaseActivity
 import com.mindorks.framework.mvvm.ui.home.HomeActivityMain
-import com.mindorks.framework.mvvm.ui.main.MainActivity
 
 /**
  * Created by amitshekhar on 08/07/17.
@@ -33,9 +33,7 @@ import com.mindorks.framework.mvvm.ui.main.MainActivity
 class LoginActivity : BaseActivity<ActivityLoginBinding?, LoginViewModel?>(), LoginNavigator {
     private var mActivityLoginBinding: ActivityLoginBinding? = null
 
-
     override fun handleError(throwable: Throwable?, messages: String?) {
-        // handle error
         showMessage(messages)
     }
 
@@ -53,7 +51,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding?, LoginViewModel?>(), Lo
 
     override fun openMainActivity() {
         val intent: Intent = HomeActivityMain.newIntent(this@LoginActivity)
-//        val intent: Intent = MainActivity.newIntent(this@LoginActivity)
         startActivity(intent)
         finish()
     }
@@ -62,6 +59,14 @@ class LoginActivity : BaseActivity<ActivityLoginBinding?, LoginViewModel?>(), Lo
         super.onCreate(savedInstanceState)
         mActivityLoginBinding = viewDataBinding
         mViewModel!!.navigator = this
+
+        action()
+    }
+
+    private fun action() {
+        mActivityLoginBinding!!.TvDaftar.setOnClickListener {
+            startActivity(RegisterActivity.newIntent(this))
+        }
     }
 
     override fun performDependencyInjection(buildComponent: ActivityComponent) {
@@ -81,8 +86,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding?, LoginViewModel?>(), Lo
     override val layoutId: Int
         get() = R.layout.activity_login
 
-    override fun observeChange() {
-
-    }
+    override fun observeChange() {}
 
 }

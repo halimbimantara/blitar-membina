@@ -42,7 +42,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.androidnetworking.error.ANError;
 import com.google.android.material.snackbar.Snackbar;
 import com.mindorks.framework.mvvm.core.utils.CommonUtils;
-import com.mindorks.framework.mvvm.ui.login.LoginActivity;
+import com.mindorks.framework.mvvm.ui.account.login.LoginActivity;
 import com.mindorks.framework.mvvm.ui.main.MainActivity;
 import com.mindorks.framework.mvvm.utils.NetworkUtils;
 

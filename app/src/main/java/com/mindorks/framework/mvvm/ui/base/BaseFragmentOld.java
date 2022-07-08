@@ -17,7 +17,6 @@
 package com.mindorks.framework.mvvm.ui.base;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -37,11 +36,8 @@ import androidx.fragment.app.Fragment;
 import com.androidnetworking.error.ANError;
 import com.google.android.material.snackbar.Snackbar;
 import com.mindorks.framework.mvvm.core.data.model.api.ApiError;
-import com.mindorks.framework.mvvm.core.data.model.api.LoginRequest;
-import com.mindorks.framework.mvvm.ui.login.LoginActivity;
 
 import dagger.android.support.AndroidSupportInjection;
-import io.reactivex.observers.DisposableSingleObserver;
 
 /**
  * Created by amitshekhar on 09/07/17.

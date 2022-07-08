@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <queries>
         <intent>
             <action android:name="android.media.action.IMAGE_CAPTURE" />
@@ -29,6 +30,7 @@
             <data android:mimeType="image/*" />
         </intent>
     </queries>
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -37,10 +39,10 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:requestLegacyExternalStorage="true"
         android:usesCleartextTraffic="true">
         <activity
             android:name=".ui.home.HomeActivityMain"
@@ -57,22 +59,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name="com.mindorks.framework.mvvm.ui.account.login.LoginActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:label="Register"
+            android:theme="@style/Theme.BinaAhli"
+            android:name="com.mindorks.framework.mvvm.ui.account.login.register.RegisterActivity"
             android:launchMode="singleTop" />
         <activity android:name=".ui.features.course.activity.DetailCourse" />
         <activity
             android:name=".ui.main.MainActivity"
             android:launchMode="singleTop" />
         <activity
-            android:theme="@style/Theme.BinaAhli"
             android:name=".ui.features.pembina.activity.FormPostLokerActivity"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.BinaAhli" />
         <activity
             android:name="com.mindorks.framework.mvvm.ui.feed.FeedActivity"
             android:launchMode="singleTop"
             android:parentActivityName=".ui.main.MainActivity">
-
-            <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.main.MainActivity" />

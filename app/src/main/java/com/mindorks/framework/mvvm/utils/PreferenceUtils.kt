@@ -4,8 +4,9 @@ import android.content.Context
 import android.content.SharedPreferences
 
 object PreferenceUtils {
-    const val EXTRA_TYPE_ROLE_PEMBINA = "extra_role_pembina"
-    const val EXTRA_TYPE_ROLE_PELAMAR = "extra_role_pelamar"
+    const val EXTRA_TYPE_ROLE_PEMBINA = "provider"
+    const val EXTRA_TYPE_ROLE_PELAMAR = "user"
+
     private const val PREFERENCE_KEY_USER_ROLE = "userRole"
     private const val PREFERENCE_KEY_USER_ID = "userId"
     private const val PREFERENCE_KEY_USER_TOKEN = "userToken"

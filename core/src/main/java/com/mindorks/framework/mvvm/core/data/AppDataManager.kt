@@ -21,12 +21,10 @@ import com.google.gson.reflect.TypeToken
 import com.mindorks.framework.mvvm.core.data.DataManager.LoggedInMode
 import com.mindorks.framework.mvvm.core.data.local.db.DbHelper
 import com.mindorks.framework.mvvm.core.data.local.prefs.PreferencesHelper
-import com.mindorks.framework.mvvm.core.data.model.api.BlogResponse
+import com.mindorks.framework.mvvm.core.data.model.api.*
 import com.mindorks.framework.mvvm.core.data.model.api.LoginRequest.*
-import com.mindorks.framework.mvvm.core.data.model.api.LoginResponse
-import com.mindorks.framework.mvvm.core.data.model.api.LogoutResponse
-import com.mindorks.framework.mvvm.core.data.model.api.OpenSourceResponse
 import com.mindorks.framework.mvvm.core.data.model.api.response.LoginResponseApi
+import com.mindorks.framework.mvvm.core.data.model.api.response.RegisterResponse
 import com.mindorks.framework.mvvm.core.data.model.api.service.BookedResponse
 import com.mindorks.framework.mvvm.core.data.model.api.service.ServiceResponse
 import com.mindorks.framework.mvvm.core.data.model.db.Option
@@ -39,6 +37,7 @@ import com.mindorks.framework.mvvm.core.utils.AppConstants
 import com.mindorks.framework.mvvm.core.utils.CommonUtils.loadJSONFromAsset
 import io.reactivex.Observable
 import io.reactivex.Single
+import java.io.File
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -151,6 +150,22 @@ class AppDataManager @Inject constructor(
 
     override fun login(email: String, pwd: String): Single<LoginResponseApi> {
         return mApiHelper.login(email, pwd)
+    }
+
+    override fun register(
+        firstName: String,
+        lastName: String,
+        gender: String,
+        userType: String,
+        email: String,
+        username: String,
+        pwd: String
+    ): Single<RegisterResponse> {
+        return mApiHelper.register(firstName, lastName, gender, userType, email, username, pwd)
+    }
+
+    override fun addService(map: HashMap<String, String>, file: File): Single<ApiBaseResponse> {
+        return mApiHelper.addService(map, file)
     }
 
     override fun serviceList(): Observable<ServiceResponse> {

@@ -16,22 +16,33 @@
 
 package com.mindorks.framework.mvvm.core.data.remote;
 
+import static com.mindorks.framework.mvvm.core.data.model.others.AppDataConstants.Register.email;
+import static com.mindorks.framework.mvvm.core.data.model.others.AppDataConstants.Register.firstName;
+import static com.mindorks.framework.mvvm.core.data.model.others.AppDataConstants.Register.password;
+import static com.mindorks.framework.mvvm.core.data.model.others.AppDataConstants.Register.uname;
+
 import androidx.annotation.NonNull;
 
 import com.androidnetworking.common.Priority;
 import com.mindorks.framework.mvvm.core.data.local.prefs.AppPreferencesHelper;
+import com.mindorks.framework.mvvm.core.data.model.api.ApiBaseResponse;
 import com.mindorks.framework.mvvm.core.data.model.api.BlogResponse;
 import com.mindorks.framework.mvvm.core.data.model.api.LoginRequest;
 import com.mindorks.framework.mvvm.core.data.model.api.LoginResponse;
 import com.mindorks.framework.mvvm.core.data.model.api.LogoutResponse;
 import com.mindorks.framework.mvvm.core.data.model.api.OpenSourceResponse;
 import com.mindorks.framework.mvvm.core.data.model.api.response.LoginResponseApi;
+import com.mindorks.framework.mvvm.core.data.model.api.response.RegisterResponse;
 import com.mindorks.framework.mvvm.core.data.model.api.service.BookedResponse;
 import com.mindorks.framework.mvvm.core.data.model.api.service.ServiceResponse;
+import com.mindorks.framework.mvvm.core.data.model.others.AppDataConstants;
 import com.rx2androidnetworking.Rx2AndroidNetworking;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.File;
+import java.util.HashMap;
 
 import io.reactivex.Observable;
 import io.reactivex.Single;
@@ -142,5 +153,32 @@ public class AppApiHelper implements ApiHelper {
                 .addHeaders("Authorization", "Bearer " + appDataManager.getAccessToken())
                 .build()
                 .getObjectSingle(BookedResponse.class);
+    }
+
+    @NonNull
+    @Override
+    public Single<RegisterResponse> register(@NonNull String firstname, @NonNull String lastName, @NonNull String gender, @NonNull String userType, @NonNull String Email, @NonNull String username, @NonNull String pwd) {
+        return Rx2AndroidNetworking.post(ApiEndPoint.API_ENDPOINT_REGISTER_ACCOUNT)
+                .addBodyParameter(uname, username)
+                .addBodyParameter(password, pwd)
+                .addBodyParameter(email, Email)
+                .addBodyParameter(firstName, firstname)
+                .addBodyParameter(AppDataConstants.Register.lastName, lastName)
+                .addBodyParameter(AppDataConstants.Register.usertype, AppDataConstants.Register.user)
+                .addBodyParameter(AppDataConstants.Register.gender, gender)
+                .build()
+                .getObjectSingle(RegisterResponse.class);
+    }
+
+    @NonNull
+    @Override
+    public Single<ApiBaseResponse> addService(@NonNull HashMap<String, String> map, File file) {
+        return Rx2AndroidNetworking.upload(ApiEndPoint.API_ENDPOINT_ADD_SERVICE)
+                .addHeaders("Authorization", "Bearer " + appDataManager.getAccessToken())
+                .addMultipartParameter(map)
+                .addMultipartFile("service_attachment", file)
+                .setPriority(Priority.HIGH)
+                .build()
+                .getObjectSingle(ApiBaseResponse.class);
     }
 }

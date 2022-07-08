@@ -29,7 +29,9 @@ import com.mindorks.framework.mvvm.ui.feed.blogs.BlogEmptyItemViewModel.BlogEmpt
 import com.mindorks.framework.mvvm.ui.feed.blogs.BlogItemViewModel.BlogItemViewModelListener
 import com.mindorks.framework.mvvm.core.utils.AppLogger
 import com.mindorks.framework.mvvm.databinding.ItemCourseBinding
+import com.mindorks.framework.mvvm.ui.features.course.activity.DetailCourse
 import com.mindorks.framework.mvvm.ui.feed.blogs.BlogEmptyItemViewModel
+import com.mindorks.framework.mvvm.utils.PreferenceUtils.userRole
 import com.mindorks.framework.mvvm.utils.ext.loadImage
 import com.mindorks.framework.mvvm.utils.ext.loadImageDrawable
 
@@ -109,7 +111,7 @@ class HomeListAdapter(private val mResponseList: ArrayList<ServiceResponse.Data?
 
     inner class ItemListViewHolder(private val mBinding: ItemCourseBinding) : BaseViewHolder(
         mBinding.root
-    ), BlogItemViewModelListener {
+    ) {
         override fun onBind(position: Int) {
             val dataResponse = mResponseList!![position]
             mBinding.tvTitleCourse.text = dataResponse?.name
@@ -117,21 +119,14 @@ class HomeListAdapter(private val mResponseList: ArrayList<ServiceResponse.Data?
             mBinding.imvContent.loadImage(
                 dataResponse?.providerImage!!
             )
+            mBinding.imvContent.setOnClickListener {
+                itemView.context.startActivity(
+                    DetailCourse.newIntent(
+                        itemView.context, dataResponse.name!!, userRole!!
+                    )
+                )
+            }
             mBinding.executePendingBindings()
-        }
-
-        override fun onItemClick(blogUrl: String?) {
-//            if (blogUrl != null) {
-//                try {
-//                    val intent = Intent()
-//                    intent.action = Intent.ACTION_VIEW
-//                    intent.addCategory(Intent.CATEGORY_BROWSABLE)
-//                    intent.data = Uri.parse(blogUrl)
-//                    itemView.context.startActivity(intent)
-//                } catch (e: Exception) {
-//                    AppLogger.d("url error")
-//                }
-//            }
         }
     }
 

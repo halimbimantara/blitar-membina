@@ -14,6 +14,7 @@ import com.kbeanie.multipicker.api.entity.ChosenFile
 import com.kbeanie.multipicker.api.entity.ChosenImage
 import com.mindorks.framework.mvvm.R
 import com.mindorks.framework.mvvm.core.data.model.others.AttachFileModel
+import com.mindorks.framework.mvvm.core.ui.common.extensions.etToString
 import com.mindorks.framework.mvvm.core.utils.AppUtils
 import com.mindorks.framework.mvvm.databinding.ActivityFormLowonganBinding
 import com.mindorks.framework.mvvm.di.component.ActivityComponent
@@ -31,7 +32,7 @@ import java.util.HashMap
 
 class FormPostLokerActivity : BaseActivity<ActivityFormLowonganBinding?, FormPostViewModel?>(),
     ChooseFileDialog.DialogItemListener, ListAttachmentImageAdapter.ImageAttachListListener,
-    ListAttachmentFileAdapter.FileAttachmentListener, ImagePickerCallback, FilePickerCallback{
+    ListAttachmentFileAdapter.FileAttachmentListener, ImagePickerCallback, FilePickerCallback {
     private var isGranted: Boolean = false
     lateinit var binding: ActivityFormLowonganBinding
 
@@ -48,6 +49,10 @@ class FormPostLokerActivity : BaseActivity<ActivityFormLowonganBinding?, FormPos
     private val modelListFile: MutableList<AttachFileModel> = ArrayList()
     private val uploaded: MutableList<HashMap<String, String>> = ArrayList()
     var dialogFile: ChooseFileDialog? = null
+    var modelPost = HashMap<String, Any>()
+    var mFile: File? = null
+
+    var categoryId = 0
     override val bindingVariable: Int
         get() = 0
 
@@ -100,6 +105,34 @@ class FormPostLokerActivity : BaseActivity<ActivityFormLowonganBinding?, FormPos
         binding.chooseFile.setOnClickListener {
             dialogFile?.showDialog()
         }
+
+        binding.BtnApply.setOnClickListener {
+            formValidation()
+            mViewModel!!.postServiceLoker(modelPost, mFile!!)
+        }
+    }
+
+    private fun formValidation() {
+        modelPost = HashMap<String, Any>()
+        val title = binding.EtNamaLowongan.etToString()
+        val quota = binding.etQuota.etToString()
+        val desc = binding.EtDescription.etToString()//materi
+
+
+        modelPost["name"] = "Loker Magang"
+        modelPost["category_id"] = "2"
+        modelPost["provider_id"] = mViewModel?.dataManager?.currentUserId!!
+        modelPost["type"] = "fixed"
+        modelPost["discount"] = "0"
+        modelPost["duration"] = "03:00"
+        modelPost["description"] = "Operator 3d printer"
+        modelPost["is_featured"] = "0"
+        modelPost["status"] = "1"
+        modelPost["price"] = "0"
+        modelPost["added_by"] = "1"
+        modelPost["quota"] = "5"
+        modelPost["created_at"] = "2022-07-07 15:42:06"
+        modelPost["update_at"] = "2022-07-07 15:42:06"
     }
 
     private fun initUI() {
@@ -134,12 +167,13 @@ class FormPostLokerActivity : BaseActivity<ActivityFormLowonganBinding?, FormPos
                                     Toast.LENGTH_SHORT
                                 ).show()
                             } else {
+                                mFile = File(list[b].originalPath)
 //                                viewModel!!.compressImage(this, list[b].originalPath)
-                                val model = AttachFileModel()
-                                model.fileName = list[b].displayName
-                                model.originalPath = list[b].originalPath
-                                model.previewThumbnail = list[b].thumbnailPath
-                                modelListImage.add(model)
+//                                val model = AttachFileModel()
+//                                model.fileName = list[b].displayName
+//                                model.originalPath = list[b].originalPath
+//                                model.previewThumbnail = list[b].thumbnailPath
+//                                modelListImage.add(model)
                             }
                         }
                         binding.rvListImage.visibility = View.VISIBLE
@@ -179,6 +213,7 @@ class FormPostLokerActivity : BaseActivity<ActivityFormLowonganBinding?, FormPos
                                 ).show()
                             } else {
                                 // Currently can't compress File (Tryout)
+
                                 val model = AttachFileModel()
                                 model.fileName = list[b].displayName
                                 model.originalPath = list[b].originalPath
@@ -344,6 +379,7 @@ class FormPostLokerActivity : BaseActivity<ActivityFormLowonganBinding?, FormPos
                 ).show()
             } else {
                 // Currently can't compress File (Tryout)
+                mFile = File(list[b].originalPath)
                 val model = AttachFileModel()
                 model.fileName = list[b].displayName
                 model.originalPath = list[b].originalPath
@@ -367,6 +403,7 @@ class FormPostLokerActivity : BaseActivity<ActivityFormLowonganBinding?, FormPos
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
+                mFile = File(list[b].originalPath)
 //                viewModel!!.compressImage(this, list[b].originalPath)
                 val model = AttachFileModel()
                 model.fileName = list[b].displayName

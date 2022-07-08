@@ -84,7 +84,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
-                        android:id="@+id/EtNamaLengkap"
+                        android:id="@+id/EtNamaLowongan"
                         style="@style/AppTextView.Light"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
@@ -106,10 +106,10 @@
                         android:textSize="15sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/EtNamaLengkap" />
+                        app:layout_constraintTop_toBottomOf="@+id/EtNamaLowongan" />
 
                     <EditText
-                        android:id="@+id/EtTtl"
+                        android:id="@+id/EtDescription"
                         style="@style/AppTextView.Light"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -130,7 +130,7 @@
                         android:textSize="15sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/EtTtl" />
+                        app:layout_constraintTop_toBottomOf="@+id/EtDescription" />
 
                     <EditText
                         android:id="@+id/EtJenkel"
@@ -188,12 +188,12 @@
                         android:text=" Orang"
                         android:textSize="15sp"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@+id/textViewKuota"
-                        app:layout_constraintStart_toEndOf="@+id/textViewKuota"
-                        app:layout_constraintTop_toTopOf="@+id/textViewKuota" />
+                        app:layout_constraintBottom_toBottomOf="@+id/etQuota"
+                        app:layout_constraintStart_toEndOf="@+id/etQuota"
+                        app:layout_constraintTop_toTopOf="@+id/etQuota" />
 
                     <EditText
-                        android:id="@+id/textViewKuota"
+                        android:id="@+id/etQuota"
                         style="@style/AppTextView.Light"
                         android:layout_width="50dp"
                         android:layout_height="wrap_content"
@@ -215,7 +215,7 @@
                         android:textSize="15sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textViewKuota" />
+                        app:layout_constraintTop_toBottomOf="@+id/etQuota" />
 
                     <EditText
                         android:id="@+id/EtKurikulum"

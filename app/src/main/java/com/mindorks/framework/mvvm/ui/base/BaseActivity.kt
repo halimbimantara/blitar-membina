@@ -32,7 +32,7 @@ import com.mindorks.framework.mvvm.core.utils.CommonUtils.showLoadingDialog
 import com.mindorks.framework.mvvm.di.component.ActivityComponent
 import com.mindorks.framework.mvvm.di.component.DaggerActivityComponent
 import com.mindorks.framework.mvvm.di.module.ActivityModule
-import com.mindorks.framework.mvvm.ui.login.LoginActivity.Companion.newIntent
+import com.mindorks.framework.mvvm.ui.account.login.LoginActivity.Companion.newIntent
 import com.mindorks.framework.mvvm.utils.NetworkUtils.isNetworkConnected
 import javax.inject.Inject
 

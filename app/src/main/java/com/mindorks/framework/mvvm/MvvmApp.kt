@@ -48,7 +48,7 @@ class MvvmApp : Application(), CoreComponentProvider, HasActivityInjector {
             .build()
         AndroidNetworking.initialize(applicationContext, okHttpClient)
         if (BuildConfig.DEBUG) {
-            AndroidNetworking.enableLogging(HttpLoggingInterceptor.Level.BODY)
+//            AndroidNetworking.enableLogging(HttpLoggingInterceptor.Level.BODY)
         }
     }
 

@@ -13,13 +13,12 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License
  */
-package com.mindorks.framework.mvvm.ui.login
+package com.mindorks.framework.mvvm.ui.account.login
 
 import android.text.TextUtils
 import android.util.Log
 import com.androidnetworking.error.ANError
 import com.mindorks.framework.mvvm.core.data.DataManager
-import com.mindorks.framework.mvvm.core.data.model.api.BlogResponse
 import com.mindorks.framework.mvvm.ui.base.BaseViewModel
 import com.mindorks.framework.mvvm.core.utils.CommonUtils
 import com.mindorks.framework.mvvm.core.utils.rx.SchedulerProvider
@@ -51,7 +50,7 @@ class LoginViewModel(dataManager: DataManager, schedulerProvider: SchedulerProvi
                 //save session
                 dataManager.updateUserLogged(
                     it.data?.apiToken,
-                    it.data?.userRole?.get(0),
+                    it.data?.userRole.toString(),
                     it.data?.userType,
                     it.data?.id?.toLong(),
                     DataManager.LoggedInMode.LOGGED_IN_MODE_SERVER,

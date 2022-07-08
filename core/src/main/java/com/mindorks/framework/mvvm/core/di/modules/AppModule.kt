@@ -74,7 +74,7 @@ class AppModule {
     fun provideCalligraphyDefaultConfig(): CalligraphyConfig {
         return CalligraphyConfig.Builder()
             .setDefaultFontPath("fonts/source-sans-pro/SourceSansPro-Regular.ttf")
-            .setFontAttrId(R.attr.fontPath)
+            .setFontAttrId(uk.co.chrisjenx.calligraphy.R.attr.fontPath)
             .build()
     }
 
