@@ -11,9 +11,9 @@ import com.mindorks.framework.mvvm.ui.features.course.activity.DetailCourse
 import com.mindorks.framework.mvvm.ui.features.course.activity.DetailCourseApplied
 import com.mindorks.framework.mvvm.ui.features.course.activity.DetailCourseCompleted
 import com.mindorks.framework.mvvm.ui.home.models.CourseModel
-import org.hawlastudio.binaahli.utils.ext.gone
+import com.mindorks.framework.mvvm.utils.ext.gone
 import com.mindorks.framework.mvvm.utils.ext.loadImageDrawable
-import org.hawlastudio.binaahli.utils.ext.visible
+import com.mindorks.framework.mvvm.utils.ext.visible
 
 class AdapterOffline(
     private val mModels: List<CourseModel>,
@@ -98,11 +98,11 @@ class AdapterOffline(
 
             } else {
                 mBinding.imvContent.setOnClickListener {
-                    itemView.context.startActivity(
-                        DetailCourse.newIntent(
-                            itemView.context, model.title, userRole!!
-                        )
-                    )
+//                    itemView.context.startActivity(
+//                        DetailCourse.newIntent(
+//                            itemView.context, model.title, userRole!!
+//                        )
+//                    )
                 }
                 mBinding.tvApproval.gone()
             }

@@ -24,9 +24,16 @@ object ApiEndPoint {
     const val ENDPOINT_LOGOUT = BuildConfig.BASE_URL + "/588d161c100000a9072d2946"
     const val ENDPOINT_OPEN_SOURCE = BuildConfig.BASE_URL + "/5926c34212000035026871cd"
     const val ENDPOINT_SERVER_LOGIN = BuildConfig.BASE_URL + "/588d15f5100000a8072d2945"
-    const val API_ENDPOINT_LOGIN_ACCOUNT = BuildConfig.BASE_URL + "/login"
-    const val API_ENDPOINT_REGISTER_ACCOUNT = BuildConfig.BASE_URL + "/register"
-    const val API_ENDPOINT_SERVICE_LIST = BuildConfig.BASE_URL + "/service-list"
-    const val API_ENDPOINT_ADD_SERVICE= BuildConfig.BASE_URL + "/pembina-add-service"
-    const val API_ENDPOINT_BOOKED_NOTIFY_LIST = BuildConfig.BASE_URL + "/booking-list"
+
+
+    const val API_ENDPOINT = BuildConfig.BASE_URL + "/blitar-membina/api"
+    const val API_ENDPOINT_LOGIN_ACCOUNT = "$API_ENDPOINT/login"
+    const val API_ENDPOINT_REGISTER_ACCOUNT = "$API_ENDPOINT/register"
+    const val API_ENDPOINT_SERVICE_LIST = "$API_ENDPOINT/service-list"
+    const val API_ENDPOINT_CATEGORY_LIST = "$API_ENDPOINT/category-list"
+    const val API_ENDPOINT_KEC_LIST = "$API_ENDPOINT/kecamatan-list"
+    const val API_ENDPOINT_USER_BOOKING_LIST = "$API_ENDPOINT/user-booking-list"
+    const val API_ENDPOINT_ADD_SERVICE = "$API_ENDPOINT/pembina-add-service"
+    const val API_ENDPOINT_BOOKED_NOTIFY_LIST = "$API_ENDPOINT/booking-list"
+    const val API_ENDPOINT_BOOKING_APPROVAL = "$API_ENDPOINT/approval-booking"
 }

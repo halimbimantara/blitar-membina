@@ -9,8 +9,8 @@ import com.afollestad.materialdialogs.customview.customView
 import com.mindorks.framework.mvvm.R
 import com.mindorks.framework.mvvm.databinding.DetailContentAppliedCourseBinding
 import com.mindorks.framework.mvvm.utils.PreferenceUtils
-import org.hawlastudio.binaahli.utils.ext.gone
-import org.hawlastudio.binaahli.utils.ext.visible
+import com.mindorks.framework.mvvm.utils.ext.gone
+import com.mindorks.framework.mvvm.utils.ext.visible
 
 class DetailCourseApplied : AppCompatActivity() {
     private lateinit var binding: DetailContentAppliedCourseBinding

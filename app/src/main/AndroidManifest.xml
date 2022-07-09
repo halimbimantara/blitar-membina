@@ -62,11 +62,13 @@
             android:name="com.mindorks.framework.mvvm.ui.account.login.LoginActivity"
             android:launchMode="singleTop" />
         <activity
-            android:label="Register"
-            android:theme="@style/Theme.BinaAhli"
             android:name="com.mindorks.framework.mvvm.ui.account.login.register.RegisterActivity"
-            android:launchMode="singleTop" />
-        <activity android:name=".ui.features.course.activity.DetailCourse" />
+            android:label="Register"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.BinaAhli" />
+        <activity
+            android:name=".ui.features.course.activity.DetailCourse"
+            android:theme="@style/Theme.BinaAhli" />
         <activity
             android:name=".ui.main.MainActivity"
             android:launchMode="singleTop" />
@@ -81,6 +83,17 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.main.MainActivity" />
+        </activity>
+
+        <activity
+            android:theme="@style/Theme.BinaAhli"
+            android:label="Daftar Pelamar"
+            android:name="com.mindorks.framework.mvvm.ui.features.course.activity.ListStudentApplyCourse"
+            android:launchMode="singleTop"
+            android:parentActivityName=".ui.features.course.activity.DetailCourse">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.features.course.activity.DetailCourse" />
         </activity>
         <activity
             android:name="com.mindorks.framework.mvvm.ui.feedbuilder.FeedActivityV2"

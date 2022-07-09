@@ -45,6 +45,10 @@ public interface PreferencesHelper {
 
     void setCurrentUserName(String userName);
 
+    String getDisplayName();
+
+    void setDisplayName(String displayName);
+
     String getCurrentUserProfilePicUrl();
 
     void setCurrentUserProfilePicUrl(String profilePicUrl);

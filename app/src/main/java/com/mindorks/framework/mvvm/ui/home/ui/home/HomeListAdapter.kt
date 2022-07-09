@@ -15,25 +15,18 @@
  */
 package com.mindorks.framework.mvvm.ui.home.ui.home
 
-import android.content.Intent
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.mindorks.framework.mvvm.core.data.model.api.BlogResponse.Blog
+import com.mindorks.framework.mvvm.core.BuildConfig
 import com.mindorks.framework.mvvm.core.data.model.api.service.ServiceResponse
 import com.mindorks.framework.mvvm.databinding.ItemBlogEmptyViewBinding
-import com.mindorks.framework.mvvm.databinding.ItemBlogViewBinding
-import com.mindorks.framework.mvvm.ui.base.BaseViewHolder
-import com.mindorks.framework.mvvm.ui.feed.blogs.BlogEmptyItemViewModel.BlogEmptyItemViewModelListener
-import com.mindorks.framework.mvvm.ui.feed.blogs.BlogItemViewModel.BlogItemViewModelListener
-import com.mindorks.framework.mvvm.core.utils.AppLogger
 import com.mindorks.framework.mvvm.databinding.ItemCourseBinding
+import com.mindorks.framework.mvvm.ui.base.BaseViewHolder
 import com.mindorks.framework.mvvm.ui.features.course.activity.DetailCourse
 import com.mindorks.framework.mvvm.ui.feed.blogs.BlogEmptyItemViewModel
-import com.mindorks.framework.mvvm.utils.PreferenceUtils.userRole
+import com.mindorks.framework.mvvm.ui.feed.blogs.BlogEmptyItemViewModel.BlogEmptyItemViewModelListener
 import com.mindorks.framework.mvvm.utils.ext.loadImage
-import com.mindorks.framework.mvvm.utils.ext.loadImageDrawable
 
 /**
  * Created by amitshekhar on 10/07/17.
@@ -41,6 +34,9 @@ import com.mindorks.framework.mvvm.utils.ext.loadImageDrawable
 class HomeListAdapter(private val mResponseList: ArrayList<ServiceResponse.Data?>?) :
     RecyclerView.Adapter<BaseViewHolder>() {
     private var mListener: HomeListAdapterListener? = null
+    var idUser = 0
+    var userRoles: String? = null
+    var isNotify = false
     override fun getItemCount(): Int {
         return if (mResponseList != null && mResponseList.size > 0) {
             mResponseList.size
@@ -115,14 +111,36 @@ class HomeListAdapter(private val mResponseList: ArrayList<ServiceResponse.Data?
         override fun onBind(position: Int) {
             val dataResponse = mResponseList!![position]
             mBinding.tvTitleCourse.text = dataResponse?.name
-            mBinding.tvContent.text = dataResponse?.description
+            mBinding.tvContent.text = dataResponse?.namaUsaha + "\n" + dataResponse?.providerName
+            val imageCover =
+                dataResponse!!.attchments!![0]!!.replace("http://localhost", BuildConfig.BASE_URL)
             mBinding.imvContent.loadImage(
-                dataResponse?.providerImage!!
+                imageCover
             )
-            mBinding.imvContent.setOnClickListener {
+            mBinding.tvLabel.text = if (dataResponse.categoryId == 1) {
+                "Lowongan Kerja"
+            } else {
+                "Magang"
+            }
+            mBinding.root.setOnClickListener {
                 itemView.context.startActivity(
                     DetailCourse.newIntent(
-                        itemView.context, dataResponse.name!!, userRole!!
+                        itemView.context,
+                        dataResponse.name!!,
+                        dataResponse.id,
+                        dataResponse.namaUsaha,
+                        dataResponse.categoryName!!,
+                        dataResponse.alamatLowongan,
+                        dataResponse.providerPhone,
+                        dataResponse.description,
+                        dataResponse.jadwal,
+                        dataResponse.quota,
+                        0,
+                        dataResponse.providerId,
+                        dataResponse.providerName,
+                        userRoles,
+                        imageCover,
+                        isNotify
                     )
                 )
             }

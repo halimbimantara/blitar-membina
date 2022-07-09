@@ -1,7 +1,12 @@
 package com.mindorks.framework.mvvm.core.utils
 
+import android.os.Build.VERSION_CODES.BASE
+import com.mindorks.framework.mvvm.core.BuildConfig
+
 object AppConstants {
     const val TIME_OUT_CONNECTION = 30L
+    const val BASE_URL_IMAGE = BuildConfig.BASE_URL
+
     const val API_STATUS_CODE_LOCAL_ERROR = 0
     const val DB_NAME = "mindorks_mvvm.db"
     const val NULL_INDEX = -1L

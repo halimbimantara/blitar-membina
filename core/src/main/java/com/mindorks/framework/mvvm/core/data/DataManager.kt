@@ -47,6 +47,7 @@ interface DataManager : DbHelper, PreferencesHelper, ApiHelper {
         userId: Long?,
         loggedInMode: LoggedInMode?,
         userName: String?,
+        displayName: String?,
         email: String?,
         profilePicPath: String?
     )

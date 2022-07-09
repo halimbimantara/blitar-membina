@@ -42,12 +42,12 @@ class AdapterStudent(
                 model.imgDrawable!!
             )
             mBinding.imvContent.setOnClickListener {
-                itemView.context.startActivity(
-                    DetailCourse.newIntent(
-                        itemView.context,
-                        model.title
-                    )
-                )
+//                itemView.context.startActivity(
+////                    DetailCourse.newIntent(
+////                        itemView.context,
+////                        model.title
+////                    )
+//                )
             }
         }
     }

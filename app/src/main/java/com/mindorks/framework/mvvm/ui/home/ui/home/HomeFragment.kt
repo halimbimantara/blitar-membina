@@ -11,8 +11,7 @@ import com.mindorks.framework.mvvm.di.component.FragmentComponent
 import com.mindorks.framework.mvvm.ui.base.BaseFragment
 import com.mindorks.framework.mvvm.ui.features.pembina.activity.FormPostLokerActivity
 import com.mindorks.framework.mvvm.utils.PreferenceUtils
-import org.hawlastudio.binaahli.utils.ext.gone
-import org.hawlastudio.binaahli.utils.ext.visible
+import com.mindorks.framework.mvvm.utils.ext.visible
 
 class HomeFragment : BaseFragment<FragmentHomeBinding?, HomeViewModel?>(),
     HomeListAdapter.HomeListAdapterListener {
@@ -38,8 +37,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding?, HomeViewModel?>(),
         mViewModel!!.serviceDataList.observe(requireActivity()) {
             if (it != null) {
                 listCourseItem.clear()
-                it.data?.let { it1 -> listCourseItem?.addAll(it1) }
-                mAdapter?.addItems(listCourseItem)
+                mAdapter?.addItems(it.data as ArrayList<ServiceResponse.Data?>?)
             } else {
                 //empty
             }
@@ -50,7 +48,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding?, HomeViewModel?>(),
         //rv
         mLayoutManager = LinearLayoutManager(requireContext())
         mAdapter = HomeListAdapter(listCourseItem)
+        mAdapter!!.idUser = mViewModel?.dataManager?.currentUserId?.toInt()!!
         mAdapter!!.setListener(this)
+        mAdapter!!.userRoles = mViewModel?.dataManager?.userTypes
         mLayoutManager!!.orientation = LinearLayoutManager.VERTICAL
         binding!!.rvCourse.layoutManager = mLayoutManager
         binding!!.rvCourse.itemAnimator = DefaultItemAnimator()
@@ -59,15 +59,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding?, HomeViewModel?>(),
 
     private fun setup() {
         binding!!.floatAddLoker.visible()
-        when (PreferenceUtils.userRole) {
+        when (mViewModel?.dataManager?.userTypes) {
 
-//            PreferenceUtils.EXTRA_TYPE_ROLE_PELAMAR -> {
+            PreferenceUtils.EXTRA_TYPE_ROLE_PELAMAR -> {
 //                binding!!.floatAddLoker.gone()
-//            }
-//
-//            PreferenceUtils.EXTRA_TYPE_ROLE_PEMBINA -> {
+            }
+
+            PreferenceUtils.EXTRA_TYPE_ROLE_PEMBINA -> {
 //                binding!!.floatAddLoker.visible()
-//            }
+            }
         }
         binding!!.floatAddLoker.setOnClickListener {
             startActivity(
@@ -77,8 +77,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding?, HomeViewModel?>(),
                 )
             )
         }
-
-
     }
 
     override fun performDependencyInjection(buildComponent: FragmentComponent?) {

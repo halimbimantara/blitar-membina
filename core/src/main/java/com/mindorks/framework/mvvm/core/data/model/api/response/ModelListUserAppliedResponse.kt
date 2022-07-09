@@ -1,11 +1,10 @@
-package com.mindorks.framework.mvvm.core.data.model.api.service
+package com.mindorks.framework.mvvm.core.data.model.api.response
 
 
 import com.google.gson.annotations.SerializedName
 
-data class BookedResponse(
-    var `data`: List<Data?>?,
-    var pagination: Pagination?
+data class ModelListUserAppliedResponse(
+    var `data`: List<Data?>?
 ) {
     data class Data(
         var address: String?,
@@ -17,6 +16,8 @@ data class BookedResponse(
         var customerId: Int?,
         @SerializedName("customer_name")
         var customerName: String?,
+        @SerializedName("customer_profile_pict")
+        var customerProfilePict: String?,
         var date: String?,
         var description: Any?,
         var discount: Int?,
@@ -54,21 +55,4 @@ data class BookedResponse(
         var totalRating: Int?,
         var type: String?
     )
-
-    data class Pagination(
-        var currentPage: Int?,
-        var from: Int?,
-        @SerializedName("next_page")
-        var nextPage: Any?,
-        @SerializedName("per_page")
-        var perPage: Int?,
-        @SerializedName("previous_page")
-        var previousPage: Any?,
-        var to: Int?,
-        @SerializedName("total_items")
-        var totalItems: Int?,
-        var totalPages: Int?
-    )
 }
-
-data class CategoryService(val id: Int?, val name: String?)

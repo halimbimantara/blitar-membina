@@ -30,6 +30,10 @@ data class ServiceResponse(
         @SerializedName("is_featured")
         var isFeatured: Int?,
         var name: String?,
+        @SerializedName("nama_usaha")
+        var namaUsaha: String?,
+        @SerializedName("alamat_lowongan")
+        var alamatLowongan: String?,
         var price: Int?,
         @SerializedName("price_format")
         var priceFormat: String?,
@@ -39,6 +43,8 @@ data class ServiceResponse(
         var providerImage: String?,
         @SerializedName("provider_name")
         var providerName: String?,
+        @SerializedName("provider_contact")
+        var providerPhone: String?,
         @SerializedName("service_address_mapping")
         var serviceAddressMapping: List<Any?>?,
         var status: Int?,
@@ -50,7 +56,9 @@ data class ServiceResponse(
         var totalRating: Int?,
         @SerializedName("total_review")
         var totalReview: Int?,
-        var type: String?
+        var type: String?,
+        var quota: Int?,
+        var jadwal: String?
     ) {
         data class AttchmentsArray(
             var id: Int?,

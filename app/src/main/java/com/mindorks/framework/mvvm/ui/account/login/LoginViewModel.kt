@@ -55,6 +55,7 @@ class LoginViewModel(dataManager: DataManager, schedulerProvider: SchedulerProvi
                     it.data?.id?.toLong(),
                     DataManager.LoggedInMode.LOGGED_IN_MODE_SERVER,
                     it.data?.username,
+                    it.data?.displayName,
                     it.data?.email,
                     it.data?.profileImage
                 )

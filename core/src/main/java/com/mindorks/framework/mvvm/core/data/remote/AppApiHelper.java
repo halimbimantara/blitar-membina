@@ -31,7 +31,10 @@ import com.mindorks.framework.mvvm.core.data.model.api.LoginRequest;
 import com.mindorks.framework.mvvm.core.data.model.api.LoginResponse;
 import com.mindorks.framework.mvvm.core.data.model.api.LogoutResponse;
 import com.mindorks.framework.mvvm.core.data.model.api.OpenSourceResponse;
+import com.mindorks.framework.mvvm.core.data.model.api.response.ListCategoryItem;
 import com.mindorks.framework.mvvm.core.data.model.api.response.LoginResponseApi;
+import com.mindorks.framework.mvvm.core.data.model.api.response.ModelKecamatan;
+import com.mindorks.framework.mvvm.core.data.model.api.response.ModelListUserAppliedResponse;
 import com.mindorks.framework.mvvm.core.data.model.api.response.RegisterResponse;
 import com.mindorks.framework.mvvm.core.data.model.api.service.BookedResponse;
 import com.mindorks.framework.mvvm.core.data.model.api.service.ServiceResponse;
@@ -180,5 +183,31 @@ public class AppApiHelper implements ApiHelper {
                 .setPriority(Priority.HIGH)
                 .build()
                 .getObjectSingle(ApiBaseResponse.class);
+    }
+
+    @NonNull
+    @Override
+    public Observable<ListCategoryItem> categoryList() {
+        return Rx2AndroidNetworking.get(ApiEndPoint.API_ENDPOINT_CATEGORY_LIST)
+                .build()
+                .getObjectObservable(ListCategoryItem.class);
+    }
+
+    @NonNull
+    @Override
+    public Observable<ModelKecamatan.Data> kecamatanList() {
+        return Rx2AndroidNetworking.get(ApiEndPoint.API_ENDPOINT_KEC_LIST)
+                .build()
+                .getObjectObservable(ModelKecamatan.Data.class);
+    }
+
+    @NonNull
+    @Override
+    public Observable<ModelListUserAppliedResponse> serviceUserListBook(String isApplied) {
+        return Rx2AndroidNetworking.get(ApiEndPoint.API_ENDPOINT_USER_BOOKING_LIST)
+                .addHeaders("Authorization", "Bearer " + appDataManager.getAccessToken())
+                .addQueryParameter("type", isApplied)
+                .build()
+                .getObjectObservable(ModelListUserAppliedResponse.class);
     }
 }

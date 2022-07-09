@@ -5,24 +5,26 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:padding="@dimen/space_8dp"
         android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            app:cardCornerRadius="6dp"
+            android:elevation="@dimen/space_4dp"
+            app:cardBackgroundColor="@color/cyan_light"
+            app:cardCornerRadius="7dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="6dp">
+                android:padding="@dimen/space_8dp">
 
                 <ImageView
                     android:id="@+id/imv_content"
-                    android:layout_width="160dp"
+                    android:layout_width="@dimen/space_90dp"
                     android:layout_height="90dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/img_loker_1"
@@ -30,11 +32,11 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_title_course"
+                    android:id="@+id/tvTitleName"
                     style="@style/AppTextView.Bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="@dimen/space_8dp"
                     app:layout_constraintStart_toEndOf="@+id/imv_content"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Elektronika | Malang" />
@@ -44,39 +46,43 @@
                     style="@style/AppTextView.Bold"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:textColor="@color/primary"
+                    android:textColor="@color/primaryTextColor"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imv_content"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_title_course"
+                    app:layout_constraintStart_toStartOf="@+id/tvTitleName"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTitleName"
                     tools:text="Magang service AC,TV dan Kulkas" />
 
                 <TextView
                     android:id="@+id/tvApproval"
-                    android:layout_width="wrap_content"
+                    style="@style/AppTextView.Bold"
+                    android:layout_width="@dimen/space_90dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="@dimen/space_8dp"
                     android:background="@color/green"
+                    android:gravity="center"
                     android:padding="6dp"
                     android:text="Disetujui"
                     android:textColor="@color/white"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toStartOf="@+id/tvApprovalDecline"
                     app:layout_constraintTop_toBottomOf="@+id/tv_content"
                     tools:visibility="visible" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvLabel"
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/tvApprovalDecline"
+                    android:layout_width="@dimen/space_90dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:padding="5dp"
-                    android:text="Magang"
-                    android:textColor="@color/black"
-                    android:theme="@style/YellowBtn"
+                    android:background="@color/red_dark"
+                    android:gravity="center"
+                    android:padding="6dp"
+                    android:text="@string/tolak"
+                    android:textColor="@color/white"
                     android:visibility="visible"
-                    app:layout_constraintStart_toStartOf="@+id/tv_content"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_content" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_content"
+                    tools:visibility="visible" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

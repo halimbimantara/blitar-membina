@@ -23,8 +23,7 @@ import com.mindorks.framework.mvvm.core.data.local.db.DbHelper
 import com.mindorks.framework.mvvm.core.data.local.prefs.PreferencesHelper
 import com.mindorks.framework.mvvm.core.data.model.api.*
 import com.mindorks.framework.mvvm.core.data.model.api.LoginRequest.*
-import com.mindorks.framework.mvvm.core.data.model.api.response.LoginResponseApi
-import com.mindorks.framework.mvvm.core.data.model.api.response.RegisterResponse
+import com.mindorks.framework.mvvm.core.data.model.api.response.*
 import com.mindorks.framework.mvvm.core.data.model.api.service.BookedResponse
 import com.mindorks.framework.mvvm.core.data.model.api.service.ServiceResponse
 import com.mindorks.framework.mvvm.core.data.model.db.Option
@@ -123,6 +122,14 @@ class AppDataManager @Inject constructor(
         mPreferencesHelper.currentUserName = userName
     }
 
+    override fun getDisplayName(): String {
+        return mPreferencesHelper.displayName
+    }
+
+    override fun setDisplayName(displayName: String?) {
+        mPreferencesHelper.displayName = displayName
+    }
+
     override fun getCurrentUserProfilePicUrl(): String {
         return mPreferencesHelper.currentUserProfilePicUrl
     }
@@ -172,8 +179,20 @@ class AppDataManager @Inject constructor(
         return mApiHelper.serviceList()
     }
 
+    override fun categoryList(): Observable<ListCategoryItem> {
+        return mApiHelper.categoryList()
+    }
+
+    override fun kecamatanList(): Observable<ModelKecamatan.Data> {
+        return mApiHelper.kecamatanList()
+    }
+
     override fun notifyBookedList(): Single<BookedResponse> {
         return mApiHelper.notifyBookedList()
+    }
+
+    override fun serviceUserListBook(isApplied: String): Observable<ModelListUserAppliedResponse> {
+        return mApiHelper.serviceUserListBook(isApplied)
     }
 
     override fun insertUser(user: User): Observable<Boolean> {
@@ -282,6 +301,7 @@ class AppDataManager @Inject constructor(
         userId: Long?,
         loggedInMode: LoggedInMode?,
         userName: String?,
+        displayName: String?,
         email: String?,
         profilePicPath: String?
     ) {

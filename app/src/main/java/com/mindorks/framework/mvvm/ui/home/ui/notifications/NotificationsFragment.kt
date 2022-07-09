@@ -1,9 +1,7 @@
 package com.mindorks.framework.mvvm.ui.home.ui.notifications
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.mindorks.framework.mvvm.R
 import com.mindorks.framework.mvvm.core.data.model.api.service.BookedResponse
 import com.mindorks.framework.mvvm.databinding.FragmentNotificationsBinding
@@ -12,7 +10,6 @@ import com.mindorks.framework.mvvm.di.component.FragmentComponent
 import com.mindorks.framework.mvvm.ui.base.BaseFragment
 import com.mindorks.framework.mvvm.ui.home.ui.home.HomeViewModel
 import com.mindorks.framework.mvvm.utils.widget.GenericAdapter
-import java.util.ArrayList
 
 class NotificationsFragment : BaseFragment<FragmentNotificationsBinding?, HomeViewModel?>() {
     private lateinit var bookedListAdapter: GenericAdapter<BookedResponse.Data, ItemCourseBinding>

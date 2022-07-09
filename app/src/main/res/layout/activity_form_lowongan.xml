@@ -13,7 +13,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_8dp">
 
                 <ImageView
                     android:id="@+id/imv_content"
@@ -23,6 +24,7 @@
                     android:layout_marginTop="12dp"
                     android:scaleType="centerInside"
                     android:src="@drawable/ic_baseline_image_24"
+                    android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,6 +37,7 @@
                     android:text="Form Input Lowongan / Magang"
                     android:textSize="16sp"
                     android:textStyle="bold"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imv_content"
                     app:layout_constraintTop_toTopOf="@+id/imv_content" />
@@ -48,6 +51,7 @@
                     android:layout_marginTop="6dp"
                     android:text="@string/label_upload_foto_cover"
                     android:textColor="@color/primary_dark"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/textViewTitle"
                     app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
@@ -90,10 +94,92 @@
                         android:layout_height="40dp"
                         android:layout_marginTop="7dp"
                         android:background="@drawable/bg_rounded_border_black"
+                        android:paddingStart="@dimen/space_8dp"
+                        android:paddingEnd="@dimen/space_8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textViewLabelPembina" />
 
+                    <!--kategori-->
+                    <TextView
+                        android:id="@+id/tvLabelKategori"
+                        style="@style/AppTextView.Bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="9dp"
+                        android:text="@string/label_kategori"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/EtNamaLowongan" />
+
+                    <com.weiwangcn.betterspinner.library.BetterSpinner
+                        android:id="@+id/spinKategori"
+                        android:layout_width="@dimen/space_0dp"
+                        android:layout_height="@dimen/space_40dp"
+                        android:layout_marginTop="@dimen/space_8dp"
+                        android:background="@drawable/bg_rounded_border_black"
+                        android:paddingStart="@dimen/space_8dp"
+                        android:paddingEnd="@dimen/space_8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvLabelKategori" />
+                    <!--Nama tempat usaha-->
+                    <TextView
+                        android:id="@+id/tvLabelTmptUsaha"
+                        style="@style/AppTextView.Bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="9dp"
+                        android:text="@string/label_nm_tempat_usaha"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/spinKategori" />
+
+                    <EditText
+                        android:id="@+id/EtNamaTmptUsaha"
+                        style="@style/AppTextView.Light"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/bg_rounded_border_black"
+                        android:minHeight="@dimen/space_40dp"
+                        android:minLines="3"
+                        android:paddingStart="@dimen/space_8dp"
+                        android:paddingEnd="@dimen/space_8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvLabelTmptUsaha" />
+
+
+                    <!--Alamat-->
+                    <TextView
+                        android:id="@+id/tvLabelAlamat"
+                        style="@style/AppTextView.Bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="9dp"
+                        android:text="@string/label_alamat"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/EtNamaTmptUsaha" />
+
+                    <EditText
+                        android:id="@+id/EtAlamatPostingLoker"
+                        style="@style/AppTextView.Light"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/bg_rounded_border_black"
+                        android:minHeight="@dimen/space_40dp"
+                        android:minLines="3"
+                        android:paddingStart="@dimen/space_8dp"
+                        android:paddingEnd="@dimen/space_8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvLabelAlamat" />
 
                     <!--materi-->
                     <TextView
@@ -106,7 +192,7 @@
                         android:textSize="15sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/EtNamaLowongan" />
+                        app:layout_constraintTop_toBottomOf="@+id/EtAlamatPostingLoker" />
 
                     <EditText
                         android:id="@+id/EtDescription"
@@ -114,14 +200,20 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        tools:text="1. Teknis Las Pagar \n2. Teknis Las teralis"
+                        android:background="@drawable/bg_rounded_border_black"
+                        android:gravity="top"
+                        android:minLines="6"
+                        android:paddingStart="@dimen/space_8dp"
+                        android:paddingTop="@dimen/space_8dp"
+                        android:paddingEnd="@dimen/space_8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tvLabelTtl" />
+                        app:layout_constraintTop_toBottomOf="@+id/tvLabelTtl"
+                        tools:text="1. Teknis Las Pagar \n2. Teknis Las teralis" />
 
                     <!--Jadwal-->
                     <TextView
-                        android:id="@+id/TvLabelJenkel"
+                        android:id="@+id/TvLabelJadwal"
                         style="@style/AppTextView.Bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -133,38 +225,19 @@
                         app:layout_constraintTop_toBottomOf="@+id/EtDescription" />
 
                     <EditText
-                        android:id="@+id/EtJenkel"
+                        android:id="@+id/EtJadwal"
                         style="@style/AppTextView.Light"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        tools:text="Pukul 07:00 - 15:00 Wib \n1 Maret - 25 Mei (setiap jumat dan sabtu)"
+                        android:background="@drawable/bg_rounded_border_black"
+                        android:minLines="3"
+                        android:paddingStart="@dimen/space_8dp"
+                        android:paddingEnd="@dimen/space_8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/TvLabelJenkel" />
-
-                    <!--pertemuan-->
-                    <TextView
-                        android:id="@+id/TvLabelPekerjaan"
-                        style="@style/AppTextView.Bold"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="9dp"
-                        android:text="@string/label_pertemuan"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/EtJenkel" />
-
-                    <EditText
-                        android:id="@+id/EtPekerjaan"
-                        style="@style/AppTextView.Light"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:inputType="number"
-                        tools:text="15"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/TvLabelPekerjaan" />
+                        app:layout_constraintTop_toBottomOf="@+id/TvLabelJadwal"
+                        tools:text="Pukul 07:00 - 15:00 Wib \n1 Maret - 25 Mei (setiap jumat dan sabtu)" />
 
 
                     <!--kuota-->
@@ -178,7 +251,7 @@
                         android:textSize="15sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/EtPekerjaan" />
+                        app:layout_constraintTop_toBottomOf="@+id/EtJadwal" />
 
                     <TextView
                         android:id="@+id/textViewLabelKuotaOrang"
@@ -195,44 +268,83 @@
                     <EditText
                         android:id="@+id/etQuota"
                         style="@style/AppTextView.Light"
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/space_70dp"
+                        android:layout_height="@dimen/space_40dp"
                         android:layout_marginTop="4dp"
+                        android:background="@drawable/bg_rounded_border_black"
                         android:gravity="center"
                         android:inputType="number"
-                        tools:text="2"
+                        android:paddingStart="@dimen/space_8dp"
+                        android:paddingEnd="@dimen/space_8dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textViewLabelKuota" />
+                        app:layout_constraintTop_toBottomOf="@+id/textViewLabelKuota"
+                        tools:text="2" />
 
-                    <!--item kurikulum-->
-                    <TextView
-                        android:id="@+id/textViewLabelKurikulum"
-                        style="@style/AppTextView.Bold"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="9dp"
-                        android:text="@string/label_kurikulum"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/etQuota" />
-
-                    <EditText
-                        android:id="@+id/EtKurikulum"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp"
-                        android:background="@drawable/bg_rounded_border_black"
-                        android:minLines="4"
-                        app:layout_constraintTop_toBottomOf="@+id/textViewLabelKurikulum" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_curicullum"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"
-                        app:layout_constraintStart_toStartOf="@+id/textViewLabelKurikulum"
-                        app:layout_constraintTop_toBottomOf="@+id/EtKurikulum" />
+                        app:layout_constraintStart_toStartOf="@+id/etQuota"
+                        app:layout_constraintTop_toBottomOf="@+id/etQuota" />
+
+
+                    <TextView
+                        android:id="@+id/tvNamaPembina"
+                        style="@style/AppTextView.Bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_8dp"
+                        android:text="@string/label_nama_pembina"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/rv_curicullum" />
+
+                    <EditText
+                        android:id="@+id/EtNamaPembina"
+                        style="@style/AppTextView.Light"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/bg_rounded_border_black"
+                        android:enabled="false"
+                        android:paddingStart="@dimen/space_8dp"
+                        android:paddingEnd="@dimen/space_8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvNamaPembina" />
+
+
+                    <!--No Tlpn-->
+                    <TextView
+                        android:id="@+id/tvNoTlpn"
+                        style="@style/AppTextView.Bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_8dp"
+                        android:text="@string/label_no_tlpn"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/EtNamaPembina" />
+
+                    <EditText
+                        android:id="@+id/EtNoTlpn"
+                        style="@style/AppTextView.Light"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/bg_rounded_border_black"
+                        android:drawableRight="@drawable/ic_baseline_call_24"
+                        android:drawableTint="@color/grey_600"
+                        android:inputType="phone"
+                        android:paddingStart="@dimen/space_8dp"
+                        android:paddingEnd="@dimen/space_8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvNoTlpn" />
 
                     <LinearLayout
                         android:id="@+id/lnTvAttachment"
@@ -240,7 +352,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/space_10dp"
                         android:orientation="horizontal"
-                        app:layout_constraintTop_toBottomOf="@+id/rv_curicullum">
+                        app:layout_constraintTop_toBottomOf="@+id/EtNoTlpn">
 
                         <androidx.appcompat.widget.AppCompatTextView
                             style="@style/AppTextView.Regular"
@@ -293,12 +405,25 @@
                         tools:visibility="visible" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        app:layout_constraintTop_toBottomOf="@+id/rvListImage"
                         android:id="@+id/rvListFile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        app:layout_constraintTop_toBottomOf="@+id/rvListImage" />
+
+                    <androidx.core.widget.ContentLoadingProgressBar
+                        android:id="@+id/CLoading"
+                        android:layout_marginTop="@dimen/space_8dp"
+                        tools:visibility="visible"
+                        style="?android:attr/progressBarStyleLargeInverse"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:progressTint="@color/azure"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/rvListFile" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/BtnApply"
@@ -312,7 +437,7 @@
                         android:textColor="@color/white"
                         app:layout_constraintEnd_toEndOf="@+id/rv_curicullum"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/rvListFile" />
+                        app:layout_constraintTop_toBottomOf="@+id/CLoading" />
 
                     <Space
                         android:layout_width="match_parent"

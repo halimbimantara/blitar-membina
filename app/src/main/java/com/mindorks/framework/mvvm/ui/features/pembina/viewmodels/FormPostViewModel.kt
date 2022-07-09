@@ -2,13 +2,24 @@ package com.mindorks.framework.mvvm.ui.features.pembina.viewmodels
 
 import android.content.Context
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.mindorks.framework.mvvm.core.data.DataManager
+import com.mindorks.framework.mvvm.core.data.model.api.response.ListCategoryItem
+import com.mindorks.framework.mvvm.core.data.model.others.AppDataConstants.Register.email
+import com.mindorks.framework.mvvm.core.data.model.others.AppDataConstants.Register.firstName
+import com.mindorks.framework.mvvm.core.data.model.others.AppDataConstants.Register.gender
+import com.mindorks.framework.mvvm.core.data.model.others.AppDataConstants.Register.lastName
 import com.mindorks.framework.mvvm.core.data.remote.ApiEndPoint
+import com.mindorks.framework.mvvm.core.data.remote.NetworkErrorHandling
+import com.mindorks.framework.mvvm.core.data.remote.NetworkErrorHandling.handleNetworkThrowableWithTag
+import com.mindorks.framework.mvvm.core.data.remote.NetworkErrorHandlingTag
 import com.mindorks.framework.mvvm.core.utils.rx.SchedulerProvider
+import com.mindorks.framework.mvvm.core.utils.rx.SingleLiveEvent
 import com.mindorks.framework.mvvm.ui.base.BaseViewModel
 import id.zelory.compressor.Compressor
 import org.json.JSONObject
@@ -17,48 +28,58 @@ import java.io.File
 
 class FormPostViewModel(dataManager: DataManager, schedulerProvider: SchedulerProvider) :
     BaseViewModel<Any?>(dataManager, schedulerProvider) {
+    val errorData = SingleLiveEvent<NetworkErrorHandlingTag>()
+    val successPostLoker = SingleLiveEvent<Boolean>()
+    val successCompress = SingleLiveEvent<Boolean>()
+    val fileCompress = SingleLiveEvent<File>()
+    private val _listCategory = SingleLiveEvent<ListCategoryItem?>()
+    val getListCategoryItem: SingleLiveEvent<ListCategoryItem?>
+        get() = _listCategory
 
-    //    private val _getListCMClassroomLiveData = MutableLiveData<GetListCMClassroomQuery.Data>()
-//    val getListCMClassroomLiveData: LiveData<GetListCMClassroomQuery.Data>
-//        get() = _getListCMClassroomLiveData
+    private fun getCategory() {
+        setIsLoading(true)
+        compositeDisposable.add(dataManager
+            .categoryList()
+            .subscribeOn(schedulerProvider.io())
+            .observeOn(schedulerProvider.ui())
+            .subscribe({
+                if (!it.data.isNullOrEmpty()) {
+                    //passing login page
+                    _listCategory.postValue(it)
+                } else {
+                    _listCategory.postValue(null)
+                }
+            }) {
+                errorData.postValue(
+                    NetworkErrorHandling.handleNetworkThrowableWithTag(
+                        it,
+                        it.message.toString()
+                    )
+                )
+                setIsLoading(false)
+            })
+    }
 
     fun postServiceLoker(mObject: HashMap<String, Any>, mFile: File) {
-        val mLoker = HashMap<String, Any>()
-        mLoker["name"] = "Loker Magang"
-        mLoker["category_id"] = "2"
-        mLoker["provider_id"] = "4"
-        mLoker["type"] = "fixed"
-        mLoker["discount"] = "0"
-        mLoker["duration"] = "03:00"
-        mLoker["description"] = "Operator 3d printer"
-        mLoker["is_featured"] = "0"
-        mLoker["status"] = "1"
-        mLoker["price"] = "0"
-        mLoker["added_by"] = "1"
-        mLoker["quota"] = "5"
-        mLoker["created_at"] = "2022-07-07 15:42:06"
-        mLoker["update_at"] = "2022-07-07 15:42:06"
-        val listFile = ArrayList<File>()
-        listFile.add(mFile)
         AndroidNetworking.upload(ApiEndPoint.API_ENDPOINT_ADD_SERVICE)
             .addHeaders("Authorization", "Bearer " + dataManager.accessToken)
             .addMultipartFile("service_attachment", mFile)
-            .addMultipartParameter(mLoker)
+            .addMultipartParameter(mObject)
             .setPriority(Priority.HIGH)
             .build()
             .setUploadProgressListener { bytesUploaded, totalBytes ->
-                // do anything with progress
                 setIsLoading(true)
             }
             .getAsJSONObject(object : JSONObjectRequestListener {
                 override fun onResponse(response: JSONObject) {
                     // do anything with response
                     Log.i("create post response", "create post: $response")
+                    successPostLoker.postValue(response.getBoolean("success"))
                 }
 
                 override fun onError(error: ANError) {
                     // handle error
-                    Log.e("create post response", "create post: ${error.message}")
+                    errorData.postValue(handleNetworkThrowableWithTag(error, "posting loker"))
                 }
             })
 
@@ -73,9 +94,14 @@ class FormPostViewModel(dataManager: DataManager, schedulerProvider: SchedulerPr
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
                 .subscribe({ response: File? ->
-                    setIsLoading(false)
                     if (response != null) {
+                        fileCompress.postValue(response)
                     }
+                    setIsLoading(false)
                 }) { setIsLoading(false) })
+    }
+
+    init {
+        getCategory()
     }
 }

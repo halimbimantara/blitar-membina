@@ -5,15 +5,28 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
 fun <T> LifecycleOwner.observe(liveData: LiveData<T>, action: (t: T) -> Unit) {
-    liveData.observe(this, { it?.let { t -> action(t) } })
+    liveData.observe(this) { it?.let { t -> action(t) } }
 }
 
 fun <T> LifecycleOwner.observe(liveData: MutableLiveData<T>, action: (t: T) -> Unit) {
-    liveData.observe(this, { it?.let { t -> action(t) } })
+    liveData.observe(this) { it?.let { t -> action(t) } }
 }
 
 fun <T> LifecycleOwner.observe(liveData: SingleLiveEvent<T>, action: (t: T) -> Unit) {
-    liveData.observe(this, { it?.let { t -> action(t) } })
+    liveData.observe(this) { it?.let { t -> action(t) } }
+}
+
+//
+fun <T> LifecycleOwner.observes(liveData: LiveData<T?>, action: (t: T?) -> Unit) {
+    liveData.observe(this) { it?.let { t -> action(t) } }
+}
+
+fun <T> LifecycleOwner.observes(liveData: MutableLiveData<T?>, action: (t: T?) -> Unit) {
+    liveData.observe(this) { it?.let { t -> action(t) } }
+}
+
+fun <T> LifecycleOwner.observes(liveData: SingleLiveEvent<T?>, action: (t: T?) -> Unit) {
+    liveData.observe(this) { it?.let { t -> action(t) } }
 }
 
 operator fun <T> MutableLiveData<ArrayList<T>>.plusAssign(values: List<T>) {

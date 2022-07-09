@@ -19,9 +19,8 @@ import com.mindorks.framework.mvvm.core.data.model.api.*
 import com.mindorks.framework.mvvm.core.data.model.api.LoginRequest.FacebookLoginRequest
 import com.mindorks.framework.mvvm.core.data.model.api.LoginRequest.GoogleLoginRequest
 import com.mindorks.framework.mvvm.core.data.model.api.LoginRequest.ServerLoginRequest
+import com.mindorks.framework.mvvm.core.data.model.api.response.*
 import com.mindorks.framework.mvvm.core.data.remote.ApiHeader
-import com.mindorks.framework.mvvm.core.data.model.api.response.LoginResponseApi
-import com.mindorks.framework.mvvm.core.data.model.api.response.RegisterResponse
 import com.mindorks.framework.mvvm.core.data.model.api.service.BookedResponse
 import com.mindorks.framework.mvvm.core.data.model.api.service.ServiceResponse
 import io.reactivex.Observable
@@ -52,5 +51,8 @@ interface ApiHelper {
 
     fun addService(map: HashMap<String, String>, file: File): Single<ApiBaseResponse>
     fun serviceList(): Observable<ServiceResponse>
+    fun categoryList(): Observable<ListCategoryItem>
+    fun kecamatanList(): Observable<ModelKecamatan.Data>
     fun notifyBookedList(): Single<BookedResponse>
+    fun serviceUserListBook(isApplied: String): Observable<ModelListUserAppliedResponse>
 }

@@ -1,4 +1,4 @@
-package org.hawlastudio.binaahli.ui.menu.dashboard
+package com.mindorks.framework.mvvm.ui.home.ui.dashboard
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

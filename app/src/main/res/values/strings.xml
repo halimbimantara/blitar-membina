@@ -117,12 +117,13 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="label_pembina">Pembina</string>
+    <string name="label_nama_pembina">Nama Pembina</string>
     <string name="batal">Batal</string>
     <string name="label_verified">Terverifikasi oleh admin dan pemerintah Desa</string>
     <string name="label_nama_depan">Nama Depan</string>
     <string name="label_nama_belakang">Nama Belakang</string>
     <string name="label_nama">Nama</string>
-    <string name="label_nama_loker">Nama Lowongan / Magang</string>
+    <string name="label_nama_loker">Judul Lowongan / Magang</string>
     <string name="label_pddkn_last">Pendidikan Terakhir</string>
     <string name="labelUsername">Username</string>
     <string name="labelPwd">Password</string>
@@ -141,6 +142,15 @@
     <string name="info_field_canempty">Field tidak boleh kosong</string>
     <string name="info_field_gender">Harap pilih jenis kelamin</string>
     <string name="alert_success_register">"Berhasil Mendaftar "</string>
+    <string name="label_kategori">Kategori</string>
+    <string name="label_no_tlpn">No Tlpn</string>
+    <string name="label_nm_tempat_usaha">Nama Tempat Usaha</string>
+    <string name="info_field_category_empty">Harap pilih kategori</string>
+    <string name="info_field_pict_empty">Harap pilih gambar lowongan</string>
+    <string name="lihat_profil">Lihat Profil</string>
+    <string name="label_telephone">No Telepon</string>
+    <string name="label_daftar_pelamar">Lihat Pelamar</string>
+    <string name="tolak">Tolak</string>
     <string-array name="spin_peserta">
         <item>Pilih peserta...</item>
         <item>Baries</item>

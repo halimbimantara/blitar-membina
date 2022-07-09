@@ -33,12 +33,14 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField("String", "BASE_URL", "\"http://192.168.0.104:8000/api\"")
+//            buildConfigField("String", "BASE_URL", "\"http://192.168.43.162/blitar-membina/api\"")
+            buildConfigField("String", "BASE_URL", "\"http://192.168.0.102\"")
             buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
         }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "BASE_URL", "\"http://192.168.0.102/blitar-membina/api\"")
             buildConfigField("String", "BASE_URL", "\"http://www.mocky.io/v2\"")
             buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
         }

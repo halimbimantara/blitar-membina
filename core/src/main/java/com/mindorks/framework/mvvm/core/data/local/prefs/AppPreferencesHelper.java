@@ -37,6 +37,7 @@ public class AppPreferencesHelper implements PreferencesHelper {
 
     private static final String PREF_KEY_CURRENT_USER_ID = "PREF_KEY_CURRENT_USER_ID";
 
+    private static final String PREF_KEY_CURRENT_FULL_NAME = "PREF_KEY_CURRENT_FULL_NAME";
     private static final String PREF_KEY_CURRENT_USER_NAME = "PREF_KEY_CURRENT_USER_NAME";
 
     private static final String PREF_KEY_CURRENT_USER_PROFILE_PIC_URL = "PREF_KEY_CURRENT_USER_PROFILE_PIC_URL";
@@ -103,6 +104,16 @@ public class AppPreferencesHelper implements PreferencesHelper {
     @Override
     public void setCurrentUserName(String userName) {
         mPrefs.edit().putString(PREF_KEY_CURRENT_USER_NAME, userName).apply();
+    }
+
+    @Override
+    public String getDisplayName() {
+       return mPrefs.getString(PREF_KEY_CURRENT_FULL_NAME, null);
+    }
+
+    @Override
+    public void setDisplayName(String displayName) {
+        mPrefs.edit().putString(PREF_KEY_CURRENT_FULL_NAME,displayName);
     }
 
     @Override

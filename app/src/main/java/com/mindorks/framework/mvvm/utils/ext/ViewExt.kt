@@ -1,15 +1,18 @@
-package org.hawlastudio.binaahli.utils.ext
+package com.mindorks.framework.mvvm.utils.ext
 
 import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
+import android.widget.ImageView
 import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.mindorks.framework.mvvm.core.R
 
 fun EditText.onFocusChanged(hasFocus: (Boolean) -> Unit) {
     this.setOnFocusChangeListener { _, b -> hasFocus(b) }
@@ -67,3 +70,9 @@ fun RecyclerView.ViewHolder.getString(@StringRes string: Int, vararg arg: String
 fun RecyclerView.ViewHolder.color(@ColorRes resource: Int): Int {
     return itemView.context.color(resource)
 }
+
+
+fun ImageView.loadUrlPicture(link: String) =
+    Glide.with(this).load(link)
+        .placeholder(com.mindorks.framework.mvvm.R.drawable.ef_image_placeholder)
+        .into(this)

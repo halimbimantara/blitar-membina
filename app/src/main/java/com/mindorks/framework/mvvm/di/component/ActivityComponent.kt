@@ -10,6 +10,8 @@ import com.mindorks.framework.mvvm.ui.feed.FeedActivity
 import com.mindorks.framework.mvvm.ui.home.HomeActivityMain
 import com.mindorks.framework.mvvm.ui.account.login.LoginActivity
 import com.mindorks.framework.mvvm.ui.account.login.register.RegisterActivity
+import com.mindorks.framework.mvvm.ui.features.course.activity.DetailCourse
+import com.mindorks.framework.mvvm.ui.features.course.activity.ListStudentApplyCourse
 import com.mindorks.framework.mvvm.ui.main.MainActivity
 import com.mindorks.framework.mvvm.ui.splash.SplashActivity
 import dagger.Component
@@ -33,5 +35,7 @@ interface ActivityComponent {
     fun inject(splashActivity: SplashActivity?)
     fun inject(mainHome: HomeActivityMain?)
     fun inject(formLowongan: FormPostLokerActivity?)
+    fun inject(activity: DetailCourse?)
+    fun inject(activity: ListStudentApplyCourse?)
 
 }

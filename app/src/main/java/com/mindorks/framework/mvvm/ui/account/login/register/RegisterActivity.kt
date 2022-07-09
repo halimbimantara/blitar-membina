@@ -18,17 +18,13 @@ package com.mindorks.framework.mvvm.ui.account.login.register
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
-import android.os.Build.VERSION_CODES.S
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.text.TextUtils.isEmpty
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.DatePicker
 import android.widget.TextView
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.mindorks.framework.mvvm.R
 import com.mindorks.framework.mvvm.core.data.model.others.AppDataConstants.Register.user
 import com.mindorks.framework.mvvm.core.data.remote.NetworkErrorHandlingTag
@@ -36,15 +32,14 @@ import com.mindorks.framework.mvvm.core.ui.common.extensions.etToString
 import com.mindorks.framework.mvvm.core.utils.AppConstants
 import com.mindorks.framework.mvvm.core.utils.AppConstants.USER_GENDER_FEMALE
 import com.mindorks.framework.mvvm.core.utils.AppConstants.USER_GENDER_MALE
-import com.mindorks.framework.mvvm.core.utils.CommonUtils
 import com.mindorks.framework.mvvm.core.utils.DateUtils
 import com.mindorks.framework.mvvm.core.utils.rx.observe
 import com.mindorks.framework.mvvm.databinding.ActivityRegisterBinding
 import com.mindorks.framework.mvvm.di.component.ActivityComponent
 import com.mindorks.framework.mvvm.ui.base.BaseActivity
 import com.mindorks.framework.mvvm.ui.home.HomeActivityMain
-import org.hawlastudio.binaahli.utils.ext.gone
-import org.hawlastudio.binaahli.utils.ext.visible
+import com.mindorks.framework.mvvm.utils.ext.gone
+import com.mindorks.framework.mvvm.utils.ext.visible
 import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
@@ -80,14 +75,14 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding?, RegisterViewMode
 
     private fun actionUi() {
         val startdateListener =
-            DatePickerDialog.OnDateSetListener { view: DatePicker?, year: Int, month: Int, dayOfMonth: Int ->
+            DatePickerDialog.OnDateSetListener { _: DatePicker?, year: Int, month: Int, dayOfMonth: Int ->
                 calendar[Calendar.YEAR] = year
                 calendar[Calendar.MONTH] = month
                 calendar[Calendar.DAY_OF_MONTH] = dayOfMonth
                 updateLabel(mBinding.EtTtl)
             }
 
-        mBinding.EtTtl.setOnClickListener { v: View? ->
+        mBinding.EtTtl.setOnClickListener {
             val mdialog = DatePickerDialog(
                 this@RegisterActivity,
                 startdateListener,
