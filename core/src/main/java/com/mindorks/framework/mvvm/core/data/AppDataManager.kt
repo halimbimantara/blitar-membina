@@ -191,6 +191,14 @@ class AppDataManager @Inject constructor(
         return mApiHelper.notifyBookedList()
     }
 
+    override fun userApplyService(
+        serviceId: String,
+        description: String,
+        customerId: Int
+    ): Single<ApiBaseResponse> {
+        return mApiHelper.userApplyService(serviceId, description, customerId)
+    }
+
     override fun serviceUserListBook(isApplied: String): Observable<ModelListUserAppliedResponse> {
         return mApiHelper.serviceUserListBook(isApplied)
     }

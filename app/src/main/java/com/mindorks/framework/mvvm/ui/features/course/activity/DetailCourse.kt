@@ -4,10 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.EditText
 import androidx.appcompat.app.ActionBar
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
+import com.afollestad.materialdialogs.customview.getCustomView
 import com.mindorks.framework.mvvm.R
+import com.mindorks.framework.mvvm.core.ui.common.extensions.etToString
 import com.mindorks.framework.mvvm.databinding.ActicityCourseDetailBinding
 import com.mindorks.framework.mvvm.di.component.ActivityComponent
 import com.mindorks.framework.mvvm.ui.base.BaseActivity
@@ -212,10 +215,17 @@ class DetailCourse : BaseActivity<ActicityCourseDetailBinding, DetailCourseViewM
     private fun actionDialogStudent() {
         binding.BtnApply.setOnClickListener {
             MaterialDialog(this).show {
-                title(text = "Apakah anda yakin mengajukan lamaran ini ?")
-                customView(R.layout.dialog_content_enter_reason_apply)
-                positiveButton(R.string.submit)
-                negativeButton(R.string.batal)
+                message(text = "Apakah anda yakin mengajukan lamaran ini ?")
+                val mView = customView(R.layout.dialog_content_enter_reason_apply)
+                val etReasonApply = mView.getCustomView().findViewById<EditText>(R.id.EtEntryReason)
+                positiveButton(R.string.submit) { dialog ->
+                    // Do something
+                    mViewModel!!.applyLowongan(idLowongan, etReasonApply.etToString())
+                }
+                negativeButton(R.string.batal) { dialog ->
+                    // Do something
+                    dismiss()
+                }
             }
         }
     }

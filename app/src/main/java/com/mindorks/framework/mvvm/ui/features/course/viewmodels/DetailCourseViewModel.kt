@@ -9,9 +9,12 @@ import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.mindorks.framework.mvvm.core.data.DataManager
 import com.mindorks.framework.mvvm.core.data.model.api.response.ModelListUserAppliedResponse
+import com.mindorks.framework.mvvm.core.data.model.others.AppDataConstants.PembinaApproval.status
 import com.mindorks.framework.mvvm.core.data.remote.ApiEndPoint
 import com.mindorks.framework.mvvm.core.data.remote.NetworkErrorHandling
+import com.mindorks.framework.mvvm.core.data.remote.NetworkErrorHandlingTag
 import com.mindorks.framework.mvvm.core.utils.rx.SchedulerProvider
+import com.mindorks.framework.mvvm.core.utils.rx.SingleLiveEvent
 import com.mindorks.framework.mvvm.ui.base.BaseViewModel
 import org.json.JSONObject
 
@@ -20,6 +23,9 @@ class DetailCourseViewModel(dataManager: DataManager, schedulerProvider: Schedul
     private val _getListUser = MutableLiveData<List<ModelListUserAppliedResponse.Data>>()
     val getListUserApplied: LiveData<List<ModelListUserAppliedResponse.Data>>
         get() = _getListUser
+    val errorData = SingleLiveEvent<NetworkErrorHandlingTag>()
+    val successApply = SingleLiveEvent<Boolean>()
+    val successApproval = SingleLiveEvent<Boolean>()
 
     fun getListUserApplied(type: String?) {
         setIsLoading(true)
@@ -39,27 +45,44 @@ class DetailCourseViewModel(dataManager: DataManager, schedulerProvider: Schedul
             })
     }
 
+    fun applyLowongan(serviceId: Int, desc: String) {
+        compositeDisposable.add(dataManager
+            .userApplyService(serviceId.toString(), desc, dataManager.currentUserId.toInt())
+            .subscribeOn(schedulerProvider.io())
+            .observeOn(schedulerProvider.ui())
+            .subscribe({
 
-    fun approvalBooking(status: String, reason: String) {
+            }) {
+                setIsLoading(false)
+            })
+    }
+
+    fun approvalBooking(id: Int, status: String, reason: String? = null) {
+        val mObjects = HashMap<String, String>()
+        mObjects["id"] = id.toString()
+        if (!reason.isNullOrEmpty())
+            mObjects["reason"] = reason
+        mObjects["status"] = status
+//        mObjects["provider_id"] = dataManager.currentUserId.toString()
+
         AndroidNetworking.post(ApiEndPoint.API_ENDPOINT_BOOKING_APPROVAL)
             .addHeaders("Authorization", "Bearer " + dataManager.accessToken)
-            .addBodyParameter("reason", reason)
-            .addBodyParameter("status", status)
-            .addBodyParameter("provider_id", dataManager.currentUserId.toString())
+            .addBodyParameter(mObjects)
             .setPriority(Priority.HIGH)
             .build()
             .getAsJSONObject(object : JSONObjectRequestListener {
                 override fun onResponse(response: JSONObject) {
+                    successApproval.postValue(response.getBoolean("success"))
                 }
 
                 override fun onError(error: ANError) {
                     // handle error
-//                    errorData.postValue(
-//                        NetworkErrorHandling.handleNetworkThrowableWithTag(
-//                            error,
-//                            "posting loker"
-//                        )
-//                    )
+                    errorData.postValue(
+                        NetworkErrorHandling.handleNetworkThrowableWithTag(
+                            error,
+                            "Failed Approval"
+                        )
+                    )
                 }
             })
     }

@@ -20,6 +20,9 @@ import static com.mindorks.framework.mvvm.core.data.model.others.AppDataConstant
 import static com.mindorks.framework.mvvm.core.data.model.others.AppDataConstants.Register.firstName;
 import static com.mindorks.framework.mvvm.core.data.model.others.AppDataConstants.Register.password;
 import static com.mindorks.framework.mvvm.core.data.model.others.AppDataConstants.Register.uname;
+import static com.mindorks.framework.mvvm.core.data.model.others.AppDataConstants.UserApply.couponId;
+import static com.mindorks.framework.mvvm.core.data.model.others.AppDataConstants.UserApply.customerId;
+import static com.mindorks.framework.mvvm.core.data.model.others.AppDataConstants.UserApply.description;
 
 import androidx.annotation.NonNull;
 
@@ -209,5 +212,18 @@ public class AppApiHelper implements ApiHelper {
                 .addQueryParameter("type", isApplied)
                 .build()
                 .getObjectObservable(ModelListUserAppliedResponse.class);
+    }
+
+    @NonNull
+    @Override
+    public Single<ApiBaseResponse> userApplyService(@NonNull String serviceId, @NonNull String mDescription, int mCustomerId) {
+        return Rx2AndroidNetworking.post(ApiEndPoint.API_ENDPOINT_USER_APPLY)
+                .addHeaders("Authorization", "Bearer " + appDataManager.getAccessToken())
+                .addBodyParameter(serviceId, serviceId)
+                .addBodyParameter(description, mDescription)
+                .addBodyParameter(couponId, "")
+                .addBodyParameter(customerId, String.valueOf(mCustomerId))
+                .build()
+                .getObjectSingle(ApiBaseResponse.class);
     }
 }

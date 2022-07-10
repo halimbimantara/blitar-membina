@@ -35,5 +35,6 @@ object ApiEndPoint {
     const val API_ENDPOINT_USER_BOOKING_LIST = "$API_ENDPOINT/user-booking-list"
     const val API_ENDPOINT_ADD_SERVICE = "$API_ENDPOINT/pembina-add-service"
     const val API_ENDPOINT_BOOKED_NOTIFY_LIST = "$API_ENDPOINT/booking-list"
+    const val API_ENDPOINT_USER_APPLY = "$API_ENDPOINT/booking-save"
     const val API_ENDPOINT_BOOKING_APPROVAL = "$API_ENDPOINT/approval-booking"
 }

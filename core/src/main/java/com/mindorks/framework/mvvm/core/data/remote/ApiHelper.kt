@@ -53,6 +53,18 @@ interface ApiHelper {
     fun serviceList(): Observable<ServiceResponse>
     fun categoryList(): Observable<ListCategoryItem>
     fun kecamatanList(): Observable<ModelKecamatan.Data>
-    fun notifyBookedList(): Single<BookedResponse>
     fun serviceUserListBook(isApplied: String): Observable<ModelListUserAppliedResponse>
+
+    /**
+     *
+     */
+
+    fun notifyBookedList(): Single<BookedResponse>
+//    fun pembinaApprovalBook(id: Int, status: String, reason: String): Single<ApiBaseResponse>
+    fun userApplyService(
+        serviceId: String,
+        description: String,
+        customerId: Int
+    ): Single<ApiBaseResponse>
+
 }

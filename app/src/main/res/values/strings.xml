@@ -151,6 +151,7 @@
     <string name="label_telephone">No Telepon</string>
     <string name="label_daftar_pelamar">Lihat Pelamar</string>
     <string name="tolak">Tolak</string>
+    <string name="ya">Ya</string>
     <string-array name="spin_peserta">
         <item>Pilih peserta...</item>
         <item>Baries</item>
